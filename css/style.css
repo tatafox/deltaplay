@@ -651,13 +651,12 @@ span a{
 }
 .iknow_tm_hero .content_inner .main_info{
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 	min-height: calc(100vh - 150px);
-	padding-top: 135px;
+	padding: 100px 0;
 }
 .iknow_tm_hero .left{
-	max-width: 500px;
+	max-width: 610px;
 }
 .iknow_tm_hero .subtitle{
 	display: inline-block;
@@ -754,6 +753,7 @@ span a{
 }
 .iknow_tm_hero .right .image{
 	position: relative;
+	height: 100%;
 }
 .iknow_tm_hero .right .image img{
 	position: relative;
@@ -4717,7 +4717,7 @@ input[type=number] {
 	padding: 23px;
 	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 18px 18px 48px rgba(46,185,146rgba(46,185,146,.1);
+	box-shadow: 18px 18px 48px rgba(46,185,146,.1);
 
 	-webkit-transition: all .3s ease;
 	   -moz-transition: all .3s ease;
@@ -4930,7 +4930,7 @@ input[type=number] {
 	.iknow_tm_mainpart_new_2 .main_menu ul li{width:50px;height:50px;padding: 15px;margin-bottom: 4px;}
 	.iknow_tm_mainpart_new_2 .main_menu ul li.entered span, .iknow_tm_mainpart_new_2 .main_menu ul li.current span{left: 32px;}
 }
-@media screen and (max-width: 1040px) {
+@media screen and (max-width: 1024px) {
 	.iknow_tm_mobile_menu{display: block;}
 	.iknow_tm_topbar.onepage{display: none;}
 	.iknow_tm_extra_demo_2 .top_shape, .iknow_tm_extra_demo_2 .bottom_shape{display: none;}
@@ -5069,6 +5069,19 @@ input[type=number] {
 	.iknow_tm_button.fixedVersion{display: none;}
 	.simple_shapes .one,.simple_shapes .two,.simple_shapes .three,.simple_shapes .four,.simple_shapes .five,.simple_shapes .six,.simple_shapes .seven,.simple_shapes .eight,.simple_shapes .nine,.simple_shapes .ten,.simple_shapes .eleven,.simple_shapes .twelve,.simple_shapes .thirteen,.simple_shapes .fourteen,.simple_shapes .fifteen,.simple_shapes .sixteen,.simple_shapes .seventeen,.simple_shapes .eighteen,.simple_shapes .nineteen,.simple_shapes .twenty{display: none;}
 	.rounded_shapes .one,.rounded_shapes .two,.rounded_shapes .three,.rounded_shapes .four,.rounded_shapes .five,.rounded_shapes .six,.rounded_shapes .seven,.rounded_shapes .eight,.rounded_shapes .nine,.rounded_shapes .ten,.rounded_shapes .eleven,.rounded_shapes .twelve,.rounded_shapes .thirteen,.rounded_shapes .fourteen,.rounded_shapes .fifteen,.rounded_shapes .sixteen,.rounded_shapes .seventeen,.rounded_shapes .eighteen{display: none;}
+	.iknow_tm_hero .right .image .main {
+		min-height: 300px;
+		position: static;
+	}
+	.footer-container .container {
+		flex-direction: column;
+		gap: 70px;
+		align-items: center;
+	}
+	.footer__left {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 @media screen and (max-width: 768px) {
 	.iknow_tm_hero_third .content .hello{font-size: 21px;}
