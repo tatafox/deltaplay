@@ -7,9 +7,9 @@
 jQuery(document).ready(function(){
 
 	"use strict";
-	
+
 	// here all ready functions
-	
+
 	iknow_tm_down();
 	iknow_tm_content_height();
 	iknow_tm_menu_width();
@@ -29,7 +29,7 @@ jQuery(document).ready(function(){
 	if(jQuery('.iknow_tm_hero .main_menu, .iknow_tm_fixed_content .menubar').length ){
 		iknow_tm_circular_progress();
 	}
-	
+
 	// used for index-7.html (without click action)
 	if(jQuery('.iknow_tm_extra_demo_2,.iknow_tm_extra_demo').length ){
 		iknow_tm_circular_progress();
@@ -44,16 +44,16 @@ jQuery(document).ready(function(){
 	hashtag2();
 	iknow_tm_scrollable();
 	iknow_tm_menu_image_animation();
-	
-	
+
+
 	jQuery(window).load('body', function(){
 		iknow_tm_my_load();
 	});
-	
+
 	jQuery(window).on('resize', function(){
 		iknow_tm_hero_height();
 	});
-	
+
 });
 
 // -----------------------------------------------------
@@ -65,19 +65,19 @@ jQuery(document).ready(function(){
 // -----------------------------------------------------
 
 function iknow_tm_down(){
-	
+
 	"use strict";
-		
+
 	jQuery('.anchor').on('click',function(){
-		
+
 		if($.attr(this, 'href') !== '#'){
 			$('html, body').animate({
 				scrollTop: $($.attr(this, 'href')).offset().top-110
 			}, 800);
 		}
-		
+
 		return false;
-	});	
+	});
 }
 
 // ------------------------------------------------
@@ -91,9 +91,9 @@ jQuery('.anchor_nav').onePageNav();
 // -----------------------------------------------------
 
 function iknow_tm_hero_height(){
-	
+
 	"use strict";
-	
+
 	var H 		= $('.iknow_tm_hero .main_menu').outerHeight();
 	var WW		= jQuery(window).width();
 	var topbarH = $('.iknow_tm_topbar').height();
@@ -107,9 +107,9 @@ function iknow_tm_hero_height(){
 // -------------------------------------------------
 
 function iknow_tm_content_height(){
-	
+
 	"use strict";
-	
+
 	var ww				= jQuery(window).width();
 	var wh				= jQuery(window).height();
 	var topbarH			= jQuery('.iknow_tm_topbar').outerHeight();
@@ -120,7 +120,7 @@ function iknow_tm_content_height(){
 	var total			= wh-topbarH-footerH-62;
 	var total2			= wh-topbarH-footerH-40;
 	var total3			= wh-topbarH-footerH;
-	
+
 	if(ww > 1400){
 		jQuery('.iknow_tm_fixed_content .fixed_content_inner').css({height:total+'px',top:topPosition+'px'});
 	}
@@ -145,12 +145,12 @@ function iknow_tm_portfolio(){
 		var filter		 = jQuery('.iknow_tm_portfolio .portfolio_filter ul');
 
 		if(filter.length){
-			// Isotope Filter 
+			// Isotope Filter
 			filter.find('a').on('click', function(){
 				var element		= jQuery(this);
 				var selector 	= element.attr('data-filter');
 				var list		= element.closest('.iknow_tm_portfolio').find('.portfolio_list').children('ul');
-				list.isotope({ 
+				list.isotope({
 					filter				: selector,
 					animationOptions	: {
 						duration			: 750,
@@ -158,11 +158,11 @@ function iknow_tm_portfolio(){
 						queue				: false
 					}
 				});
-				
+
 				filter.find('a').removeClass('current');
 				element.addClass('current');
 				return false;
-			});	
+			});
 		}
 	}
 }
@@ -172,13 +172,13 @@ function iknow_tm_portfolio(){
 // -------------------------------------------------
 
 function iknow_tm_portfolio_popup(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.iknow_tm_modalbox');
 	var button			= jQuery('.iknow_tm_portfolio .portfolio_popup');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.off().on('click',function(){
 		var element = jQuery(this);
 		var parent 	= element.closest('.list_inner');
@@ -204,13 +204,13 @@ function iknow_tm_portfolio_popup(){
 // -------------------------------------------------
 
 function iknow_tm_service_popup(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.iknow_tm_modalbox');
 	var button			= jQuery('.iknow_tm_services .iknow_tm_full_link');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.on('click',function(){
 		var element = jQuery(this);
 		var parent  = element.closest('.list_inner');
@@ -234,13 +234,13 @@ function iknow_tm_service_popup(){
 // -------------------------------------------------
 
 function iknow_tm_news_popup(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.iknow_tm_modalbox');
 	var button			= jQuery('.iknow_tm_news .iknow_tm_full_link,.iknow_tm_news .news_list ul li .details .title a');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.on('click',function(){
 		var element  = jQuery(this);
 		var parent 	 = element.closest('.list_inner');
@@ -267,12 +267,12 @@ function iknow_tm_news_popup(){
 // -----------------------------------------------------
 
 function iknow_tm_menu_width(){
-	
+
 	"use strict";
-	
+
 	var ww	= jQuery(window).width();
 	var btn	= jQuery('.iknow_tm_hero .main_menu ul li a');
-	
+
 	btn.on('mouseenter',function(){
 		var element 	= jQuery(this);
 		var li			= element.closest('li');
@@ -292,7 +292,7 @@ function iknow_tm_menu_width(){
 		if(ww <= 1400){
 			allLi.removeClass('entered').css({width:'95px'});
 		}
-		
+
 		if(activeLi.length){
 			var elWidth		= 135;
 			if(ww <= 1400){
@@ -302,7 +302,7 @@ function iknow_tm_menu_width(){
 			activeLi.removeClass('fixed').addClass('active').css({width: elWidth+textWidth+'px'});
 		}
 	});
-	
+
 	btn.on('click',function(){
 		var element 	= jQuery(this);
 		var li			= element.closest('li');
@@ -312,7 +312,7 @@ function iknow_tm_menu_width(){
 		}
 		li.addClass('active fixed');
 		var mainMenu	= element.closest('.main_menu');
-		
+
 		if(ww <= 1040){
 			$('html, body').animate({
 				scrollTop: $('.iknow_tm_mainpart').offset().top - 30
@@ -322,8 +322,8 @@ function iknow_tm_menu_width(){
 				scrollTop: mainMenu.offset().top - 30
 			}, 1000);
 		}
-		
-		
+
+
 		li.siblings().removeClass('active').css({width:'135px'});
 		if(ww <= 1400){
 			li.siblings().removeClass('active').css({width:'95px'});
@@ -333,17 +333,17 @@ function iknow_tm_menu_width(){
 		jQuery('.iknow_tm_hero .background_shape').addClass('opened');
 		jQuery('.iknow_tm_copyright.hidden').addClass('visible');
 		$(href).addClass('active');
-		
+
 		if(!li.hasClass('entered')){
 			var elWidth		= li.outerWidth();
 			var textWidth	= li.find('span').outerWidth();
 			li.css({width: elWidth+textWidth+'px'});
 		}
 		iknow_tm_owl_carousel();
-		
+
 		return false;
 	});
-	
+
 	jQuery('.iknow_tm_hero .main_menu ul li.active').each(function(){
 		var element 	= jQuery(this);
 		var elWidth		= element.outerWidth();
@@ -359,9 +359,9 @@ function iknow_tm_menu_width(){
 // -------------------------------------------------
 
 function tdProgress(container){
-	
+
 	"use strict";
-		
+
 	container.find('.progress_inner').each(function() {
 		var progress 		= jQuery(this);
 		var pValue 			= parseInt(progress.data('value'), 10);
@@ -377,9 +377,9 @@ function tdProgress(container){
 	});
 }
 function progress_by_frenify(wrapper){
-	
+
 	"use strict";
-	
+
 	var element;
 	if(wrapper){
 		element = wrapper.find('.dodo_progress');
@@ -390,7 +390,7 @@ function progress_by_frenify(wrapper){
 		var pWrap = jQuery(this);
 		pWrap.find('.number').css({right:'100%'});
 		console.log(pWrap.find('.number').length);
-		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});	
+		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});
 	});
 }
 if(!$('.iknow_tm_extra_menu').length){
@@ -402,12 +402,12 @@ if(!$('.iknow_tm_extra_menu').length){
 // -----------------------------------------------------
 
 function iknow_tm_preloader(){
-	
+
 	"use strict";
-	
+
 	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
 	var preloader = $('#preloader');
-	
+
 	if (!isMobile) {
 		setTimeout(function() {
 			preloader.addClass('preloaded');
@@ -426,9 +426,9 @@ function iknow_tm_preloader(){
 // -----------------------------------------------------
 
 function iknow_tm_my_load(){
-	
+
 	"use strict";
-	
+
 	var speed	= 500;
 	setTimeout(function(){iknow_tm_preloader();},speed);
 	setTimeout(function(){jQuery('body').addClass('opened');},speed+2000);
@@ -439,11 +439,11 @@ function iknow_tm_my_load(){
 // -----------------------------------------------------
 
 function iknow_tm_cursor(){
-	
+
     "use strict";
-	
+
 	var myCursor	= jQuery('.mouse-cursor');
-	
+
 	if(myCursor.length){
 		if ($("body")) {
         const e = document.querySelector(".cursor-inner"),
@@ -466,11 +466,11 @@ function iknow_tm_cursor(){
 // -----------------------------------------------------
 
 function iknow_tm_imgtosvg(){
-	
+
 	"use strict";
-	
+
 	jQuery('img.svg').each(function(){
-		
+
 		var jQueryimg 		= jQuery(this);
 		var imgClass		= jQueryimg.attr('class');
 		var imgURL			= jQueryimg.attr('src');
@@ -500,7 +500,7 @@ function iknow_tm_imgtosvg(){
 // -----------------------------------------------------
 
 function iknow_tm_popup(){
-	
+
 	"use strict";
 
 	jQuery('.gallery_zoom').each(function() { // the containers for all your galleries
@@ -525,11 +525,11 @@ function iknow_tm_popup(){
 			fixedContentPos: false
 		});
 	});
-	
+
 	jQuery('.soundcloude_link').magnificPopup({
 	  type : 'image',
 	   gallery: {
-		   enabled: true, 
+		   enabled: true,
 	   },
 	});
 }
@@ -539,11 +539,11 @@ function iknow_tm_popup(){
 // -----------------------------------------------------
 
 function iknow_tm_data_images(){
-	
+
 	"use strict";
-	
+
 	var data			= jQuery('*[data-img-url]');
-	
+
 	data.each(function(){
 		var element			= jQuery(this);
 		var url				= element.data('img-url');
@@ -556,44 +556,44 @@ function iknow_tm_data_images(){
 // -----------------------------------------------------
 
 function iknow_tm_contact_form(){
-	
+
 	"use strict";
-	
+
 	jQuery(".contact_form #send_message").off().on('click', function(){
-		
+
 		var name 		= jQuery(".contact_form #name").val();
 		var email 		= jQuery(".contact_form #email").val();
 		var message 	= jQuery(".contact_form #message").val();
 		var subject 	= jQuery(".contact_form #subject").val();
 		var success     = jQuery(".contact_form .returnmessage").data('success');
-	
+
 		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
-		//checking for blank fields	
+		//checking for blank fields
 		if(name===''||email===''||message===''){
-			
+
 			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
 		}
 		else{
 			// Returns successful data submission message when the entered information is stored in database.
 			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
-				
+
 				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
-				
-				
+
+
 				if(jQuery(".contact_form .returnmessage span.contact_error").length){
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
+					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);
 				}else{
 					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
 					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
 				}
-				
+
 				if(data===""){
 					jQuery("#contact_form")[0].reset();//To reset form fields on success
 				}
-				
+
 			});
 		}
-		return false; 
+		return false;
 	});
 }
 
@@ -610,20 +610,20 @@ function iknow_tm_contact_form(){
 function iknow_tm_owl_carousel(){
 
 	"use strict";
-	
+
 	var carousel			= jQuery('.iknow_tm_testimonials .owl-carousel');
 	var carousel2			= jQuery('.iknow_tm_fixed_content .iknow_tm_testimonials .owl-carousel');
-	
+
 	var rtlMode		= false;
 
 	if(jQuery('body').hasClass('rtl')){
 		rtlMode = 'true';
 	}
-	
+
 	carousel2.owlCarousel({
 		items: 1,
 	});
-	
+
 	carousel.owlCarousel({
 		loop: true,
 		items: 2,
@@ -649,10 +649,10 @@ function iknow_tm_owl_carousel(){
 
 function iknow_tm_circular_progress(){
 	"use strict";
-	
+
 	var ww		= jQuery(window).width();
 	var circVal;
-	
+
 	if(ww > 1400){
 		circVal = 213;
 	}
@@ -662,7 +662,7 @@ function iknow_tm_circular_progress(){
 	else{
 		circVal = 120;
 	}
-	
+
 	jQuery('.circular_progress_bar .myCircle').each(function(){
 		var element	= jQuery(this);
 		element.append('<h3 class="number"></h3>');
@@ -685,10 +685,10 @@ function iknow_tm_circular_progress(){
 
 function by_frenify(wrapper,speed){
 	"use strict";
-	
+
 	var ww		= jQuery(window).width();
 	var circVal;
-	
+
 	if(ww > 1400){
 		circVal = 213;
 	}
@@ -698,20 +698,20 @@ function by_frenify(wrapper,speed){
 	else{
 		circVal = 120;
 	}
-	
+
 	var element = wrapper.find('.myCircle');
-	
+
 	if(element.length > 0){
-		
+
 		element.each(function(){
 			var e		= jQuery(this);
 			var value	= e.data('value');
 			var speed2 	= 1400;
-			
+
 			if(!e.find('.number').length){
 				e.append('<h3 class="number"></h3>');
 			}
-			
+
 			e.circleProgress({
 				size: circVal,
 				value: 0,
@@ -723,11 +723,11 @@ function by_frenify(wrapper,speed){
 			}).on('circle-animation-progress', function(event, progress, stepValue) {
 				e.find('h3').text(parseInt(stepValue.toFixed(2)*100) + '%');
 			});
-			
+
 			setTimeout(function() { e.circleProgress('value', 1.0); }, speed);
 			setTimeout(function() { e.circleProgress('value', value); }, speed2+speed);
 		});
-		
+
 	}
 }
 
@@ -736,9 +736,9 @@ function by_frenify(wrapper,speed){
 // -----------------------------------------------------
 
 function iknow_tm_extra_menu(){
-	
+
 	"use strict";
-	
+
 	var item	= jQuery('.iknow_tm_extra_menu .unorderest_li');
 	var speed	= 1000;
 	item.each(function(){
@@ -746,43 +746,43 @@ function iknow_tm_extra_menu(){
 		var content			= jQuery(element.find('.iknow_tm_full_link').attr('href')).html();
 		element.append('<div class="details_wrapper"></div>').find('.details_wrapper').html(content);
 	});
-	
-	
+
+
 	var button  = jQuery('.iknow_tm_extra_menu .iknow_tm_full_link');
-	
+
 	button.on('click',function(){
 		var element			= jQuery(this);
 		var li				= element.closest('li');
-		
+
 		var details			= li.find('.details_wrapper');
 		var detailsH		= details.outerHeight() * 0.7;
 		var min = 500, max = 1000;
 		speed = detailsH < min ? min:detailsH;
 		speed = speed > max ? max:speed;
 		speed = parseInt(speed);
-		
+
 		if(li.hasClass('opened')){
 			li.removeClass('opened').find('.details_wrapper').slideUp(speed);return false;
 		}else{
 			li.siblings().removeClass('opened');
 			li.addClass('opened');
 		}
-		
+
 		var index			= li.index();
 		var marginBottom 	= parseInt(li.css("margin-bottom"));
 		var liHeight		= li.find('.list_in').outerHeight();
 		var parent			= li.closest('.menu_list');
 		var top				= parent.offset().top + (liHeight + marginBottom) * index;
-		
+
 		/* Scroll the window to the selected element */
 		$('html, body').animate({
 			scrollTop: top - marginBottom
 		},speed);
-		
+
 		li.siblings().find('.details_wrapper').slideUp(speed);
 		li.find('.details_wrapper').slideDown(speed);
 		by_frenify(li,speed);
-		
+
 		// reinitialization functions
 		iknow_tm_owl_carousel();
 		progress_by_frenify(li);
@@ -801,14 +801,14 @@ function iknow_tm_extra_menu(){
 // -----------------------------------------------------
 
 function iknow_tm_menubar(){
-	
+
 	"use strict";
-	
+
 	var li		= jQuery('.iknow_tm_fixed_content .menubar ul li, .transition_link a');
 	var button	= li.find('.iknow_tm_full_link');
-	
+
 	button.on('click',function(){
-		var element = jQuery(this);	
+		var element = jQuery(this);
 		var parent	= element.closest('li');
 		var href	= element.attr('href');
 		if(!parent.hasClass('active')){
@@ -829,23 +829,23 @@ function iknow_tm_menubar(){
 // -----------------------------------------------------
 
 function iknow_tm_page_transition(){
-	
+
 	"use strict";
-	
+
 	var section 		= jQuery('.iknow_tm_animate_section');
 	var allLi 			= jQuery('.transition_link li');
 	var button			= jQuery('.transition_link a');
 	var wrapper 		= jQuery('.iknow_tm_all_wrap');
 	var enter	 		= wrapper.data('enter');
 	var exit		 	= wrapper.data('exit');
-	
+
 	button.on('click',function(){
 		var element 	= jQuery(this);
 		var href		= element.attr('href');
 		if(element.parent().hasClass('iknow_tm_button')){
 			jQuery('.menu.transition_link a[href="'+href+'"]').trigger('click');
 			hashtag2();
-			return false;
+			//return false;
 		}
 		var sectionID 	= jQuery(href);
 		var parent	 	= element.closest('li');
@@ -863,7 +863,7 @@ function iknow_tm_page_transition(){
 				iknow_tm_owl_carousel();
 				iknow_tm_circular_progress();
 			}
-		return false;
+		//return false;
 	});
 }
 
@@ -878,7 +878,7 @@ function dodo_parallax_animation(){
 	jQuery('.parallax').each(function(){
 		var element = jQuery(this);
 		var scene = element.get(0);
-		var parallax = new Parallax(scene, { 
+		var parallax = new Parallax(scene, {
 			relativeInput: true,
 			onReady: function() { console.log('ready!');
 			} });
@@ -890,7 +890,7 @@ function dodo_parallax_animation(){
 // -----------------------------------------------------
 
 function iknow_tm_vanta_effects(){
-	
+
 	"use strict";
 	if($('.iknow_tm_hero_extra .background .image').length){
 		VANTA.WAVES({
@@ -913,7 +913,7 @@ function iknow_tm_vanta_effects(){
 // -----------------------------------------------------
 
 function iknow_tm_trigger_opener(){
-	
+
 	"use strict";
 
 	var audio1			= jQuery('#audio1');
@@ -933,7 +933,7 @@ function iknow_tm_trigger_opener(){
 			audio2[0].play();
 			menu.addClass('opened');
 		}
-		return false;
+		//return false;
 	});
 }
 
@@ -942,7 +942,7 @@ function iknow_tm_trigger_opener(){
 // -----------------------------------------------------
 
 function iknow_tm_trigger_menu(){
-	
+
 	"use strict";
 
 	var hamburger 		= jQuery('.iknow_tm_mobile_menu .trigger .hamburger');
@@ -961,12 +961,12 @@ function iknow_tm_trigger_menu(){
 		}
 		return false;
 	});
-	
-	mobileMenuList.on('click',function(){
+
+	/*mobileMenuList.on('click',function(){
 		jQuery('.iknow_tm_mobile_menu .trigger .hamburger').removeClass('is-active');
 		mobileMenu.slideUp();
 		return false;
-	});
+	});*/
 }
 
 // -----------------------------------------------------
@@ -976,10 +976,10 @@ function iknow_tm_trigger_menu(){
 function iknow_tm_menu_width_action(element,action){
 	"use strict";
 	var ww	= jQuery(window).width();
-	
-	
+
+
 	// action active is mouseenter and was used in onepagenav for current item (on scroll)
-	
+
 	if(action === 'active'){
 		var li			= element.closest('li');
 		if(li.hasClass('current') || li.hasClass('entered')){return false;}
@@ -997,7 +997,7 @@ function iknow_tm_menu_width_action(element,action){
 		if(ww <= 1400){
 			allLi.removeClass('entered').css({width:'50px'});
 		}
-		
+
 		if(activeLi.length){
 			var elWidth		= 70;
 			if(ww <= 1400){
@@ -1007,22 +1007,22 @@ function iknow_tm_menu_width_action(element,action){
 			activeLi.removeClass('fixed').addClass('current').css({width: elWidth+textWidth+'px'});
 		}
 	}
-	
+
 }
 
 function iknow_tm_menu_width_new(){
-	
+
 	"use strict";
-	
+
 	var ww	= jQuery(window).width();
 	var btn	= jQuery('.iknow_tm_mainpart_new_2 .main_menu ul li a');
-	
+
 	btn.on('mouseenter',function(){
 		iknow_tm_menu_width_action(jQuery(this),'active');
 	}).on('mouseleave',function(){
 		iknow_tm_menu_width_action(jQuery(this),'');
 	});
-	
+
 	btn.on('click',function(){
 		var element 	= jQuery(this);
 		var li			= element.closest('li');
@@ -1030,22 +1030,22 @@ function iknow_tm_menu_width_new(){
 			return false;
 		}
 		li.addClass('current fixed');
-		
-		
+
+
 		li.siblings().removeClass('current').css({width:'70px'});
 		if(ww <= 1400){
 			li.siblings().removeClass('current').css({width:'50px'});
 		}
-		
+
 		if(!li.hasClass('entered')){
 			var elWidth		= li.outerWidth();
 			var textWidth	= li.find('span').outerWidth();
 			li.css({width: elWidth+textWidth+'px'});
 		}
-		
+
 		return false;
 	});
-	
+
 	jQuery('.iknow_tm_mainpart_new_2 .main_menu ul li.current').each(function(){
 		var element 	= jQuery(this);
 		var elWidth		= element.outerWidth();
@@ -1069,7 +1069,7 @@ function hashtag(){
 		element.parent().siblings().removeClass('mleave');
 	});
 	currentLink(ccc,element);
-	
+
 }
 
 function currentLink(ccc,e){
@@ -1081,7 +1081,7 @@ function currentLink(ccc,e){
 	e.parent().removeClass('mleave');
 	e.parent().siblings().addClass('mleave');
 	ccc.css({left: (left-menuleft) + 'px',width: width + 'px'});
-	
+
 }
 
 function hashtag2(){
@@ -1098,7 +1098,7 @@ function hashtag2(){
 		element.parent().siblings().removeClass('mleave');
 	});
 	currentLink2(ccc,element);
-	
+
 }
 
 function currentLink2(ccc,e){
@@ -1110,14 +1110,14 @@ function currentLink2(ccc,e){
 	e.parent().removeClass('mleave');
 	e.parent().siblings().addClass('mleave');
 	ccc.css({top: (left-menuleft) + 'px'});
-	
+
 }
 
 
 function iknow_tm_scrollable(){
-	
+
 	"use strict";
-	
+
 	var WW				= jQuery(window).width();
 	var H				= jQuery(window).height();
 	var scrollable		= jQuery('.iknow_tm_sidebar_3 .menu.scrollable');
@@ -1129,9 +1129,9 @@ function iknow_tm_scrollable(){
 	if(WW<=1400){
 		verMenu.css({height:H-topbar-image-footerHeight});
 	}
-	
+
 	verMenu.css({height:H-topbar-image-footerHeight-90});
-	
+
 	if(WW<=1400){
 		scrollable.each(function(){
 			var element		= jQuery(this);
@@ -1144,10 +1144,10 @@ function iknow_tm_scrollable(){
 			});
 		});
 	}
-	
+
 	scrollable.each(function(){
 		var element		= jQuery(this);
-		
+
 		element.css({height:H-topbar-image-footerHeight-90}).niceScroll({
 			touchbehavior:false,
 			cursorwidth:0,
@@ -1162,13 +1162,13 @@ function iknow_tm_scrollable(){
 // -------------------------------------------------
 
 function iknow_tm_menu_image_animation(){
-	
+
 	"use strict";
-	
+
 	jQuery(window).on('scroll',function(){
 		var menu	 		= jQuery('.iknow_tm_sidebar_3');
 		var WinOffset		= jQuery(window).scrollTop();
-		
+
 		if(WinOffset >= 100){
 			menu.addClass('animate');
 		}else{

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор Персонажа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #001f3f;
+            color: #633F2E;
+            text-align: center;
+            padding: 20px;
+            background: url("../img/case29bg.jpg") no-repeat;
+            background-size: cover;
+            height: 100vh;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        a {
+            display: block;
+            font-family: Arial, sans-serif;
+            color: #00aa00;
+            text-align: center;
+            margin: 40px;
+            font-size: 25px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #F0D2B0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(226, 194, 153, 0.5);
+            height: 90%;
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .container::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        .option, .document {
+            display: block;
+            padding: 10px;
+            margin: 10px;
+            color: white;
+            background: #534C4C;
+            border: 3px solid #534C4C;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+        .option:hover, .document:hover {
+            background: transparent;
+            border: 3px solid #534C4C;
+            color: #534C4C;
+        }
+        .option.selected, .document.selected {
+            color: white;
+            background: #882C2C;
+            border: 3px solid #882C2C;
+        }
+        .option.selected:hover, .document.selected:hover {
+            color: white;
+            background: #882C2C;
+            border: 3px solid #882C2C;
+        }
+        button {
+            border: 3px solid #882C2C;
+            background: #882C2C;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+        button:hover {
+            background: transparent;
+            border: 3px solid #882C2C;
+            color: #882C2C;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+   <!-- <h1>Добро пожаловать в игру!</h1>
+    <div class="description">Вам предоставлены материалы дела, которое полиция так и не смогла разгадать. Быть может вы справитесь лучше. Вам необходимо изучить материалы дела (изучайте в том порядке, в котором вам удобно). И после этого ответить на поставленный вопрос. После чего вы получите новые подсказки и новый вопрос. Удачи в расследовании, детективы! </div>
+    <a href="https://cloud.mail.ru/public/heGi/cHdc1LSLM" target="_blank">Документы дела</a>-->
+    <h3>Кто забрал содержимое сейфа? Выберите персонажа и пять документов, которые указывают на это</h3>
+    <h2>Выберите персонажа</h2>
+    <div id="characters">
+        <div class="option" data-id="char1">Лариса Кинг</div>
+        <div class="option" data-id="char2">Виктор Смоллс</div>
+        <div class="option" data-id="char3">Елена Морис</div>
+        <div class="option" data-id="char4">Марк Уилсон</div>
+        <div class="option" data-id="char5">Дэвид Харрис</div>
+        <div class="option" data-id="char6">Джейсон Тэйлор</div>
+        <div class="option" data-id="char7">Марта Родригес</div>
+        <div class="option" data-id="char8">Томас Риверс</div>
+    </div>
+
+    <h2>Выберите пять документов</h2>
+    <div id="documents">
+        <div class="document" data-correct="false">Расшифровка звонка в полицию</div>
+        <div class="document" data-correct="true">Протокол осмотра места преступления с фото</div>
+        <div class="document" data-correct="false">Судебно-медицинская экспертиза</div>
+        <div class="document" data-correct="false">Улика кулон (опись и фото)</div>
+        <div class="document" data-correct="false">Улика ноутбук (опись и обрывки романа)</div>
+        <div class="document" data-correct="false">Опрос Ларисы Кинг</div>
+        <div class="document" data-correct="true">Опрос Виктора Смоллса</div>
+        <div class="document" data-correct="false">Опрос Елены Морис</div>
+        <div class="document" data-correct="false">Опрос Марка Уилсона</div>
+        <div class="document" data-correct="false">Опрос Дэвида Харриса</div>
+        <div class="document" data-correct="false">Опрос Джейсона Тэйлора</div>
+        <div class="document" data-correct="false">Опрос Марты Родригес</div>
+        <div class="document" data-correct="false">Опрос Томаса Риверса</div>
+        <div class="document" data-correct="false">Газета 7.02.25</div>
+        <div class="document" data-correct="false">Завещание</div>
+        <div class="document" data-correct="false">Выписка со счета</div>
+        <div class="document" data-correct="false">Визитка бара</div>
+        <div class="document" data-correct="true">Чеки</div>
+        <div class="document" data-correct="false">Отчет о звонках Анны</div>
+        <div class="document" data-correct="false">Дневник Анны</div>
+        <div class="document" data-correct="false">Карта города</div>
+        <div class="document" data-correct="false">Переписка Анны с Еленой</div>
+        <div class="document" data-correct="false">Переписка Анны с Л</div>
+        <div class="document" data-correct="false">Переписка Анны с Виктором</div>
+        <div class="document" data-correct="true">Штраф</div>
+        <div class="document" data-correct="true">Почта Анны</div>
+    </div>
+    <br>
+    <button onclick="checkSelection()">Проверить</button>
+</div>
+
+<script>
+    let selectedCharacter = null;
+    let selectedDocuments = [];
+
+    document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            selectedCharacter = this;
+        });
+    });
+
+    document.querySelectorAll('.document').forEach(doc => {
+        doc.addEventListener('click', function() {
+            if (selectedDocuments.includes(this)) {
+                this.classList.remove('selected');
+                selectedDocuments = selectedDocuments.filter(d => d !== this);
+            } else if (selectedDocuments.length < 5) {
+                this.classList.add('selected');
+                selectedDocuments.push(this);
+            }
+        });
+    });
+
+    function checkSelection() {
+        if (!selectedCharacter || selectedDocuments.length !== 5) {
+            alert('Выберите одного персонажа и четыре документа!');
+            return;
+        }
+
+        let characterCorrect = selectedCharacter.getAttribute('data-id') === 'char2';
+        let correctDocumentsCount = selectedDocuments.filter(doc => doc.getAttribute('data-correct') === 'true').length;
+
+        if (characterCorrect && correctDocumentsCount === 5) {
+            window.location.href = 'answer1.html';
+        } else {
+            alert(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
+        }
+    }
+</script>
+</body>
+</html>

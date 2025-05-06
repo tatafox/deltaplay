@@ -1958,6 +1958,9 @@ span a{
 	background-size: cover;
 	border-radius: 10px;
 }
+.iknow_tm_portfolio .portfolio_list {
+	margin-top: 50px;
+}
 .iknow_tm_portfolio .portfolio_list ul li .list_inner .overlay{
 	position: absolute;
 	top: 0px;
@@ -1965,7 +1968,7 @@ span a{
 	left: 0px;
 	right: 0px;
 	z-index: 1;
-	background-color: rgba(255,69,27,.72);
+	background-color: rgba(46,185,146,.72);
 	border-radius: 10px;
 	opacity: 0;
 	visibility: hidden;

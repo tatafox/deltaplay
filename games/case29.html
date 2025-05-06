@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор Персонажа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #001f3f;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        a {
+            display: block;
+            font-family: Arial, sans-serif;
+            color: #00aa00;
+            text-align: center;
+            margin: 40px;
+            font-size: 25px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #003366;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .option, .document {
+            display: block;
+            padding: 10px;
+            margin: 10px;
+            background: #005599;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .option:hover, .document:hover {
+            background: #0077cc;
+        }
+        button {
+            background: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #ffdd44;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Добро пожаловать в игру!</h1>
+    <div class="description">Вам предоставлены материалы дела, которое полиция так и не смогла разгадать. Быть может вы справитесь лучше. Вам необходимо изучить материалы дела (изучайте в том порядке, в котором вам удобно). И после этого ответить на поставленный вопрос. После чего вы получите новые подсказки и новый вопрос. Удачи в расследовании, детективы! </div>
+    <a href="https://cloud.mail.ru/public/heGi/cHdc1LSLM" target="_blank">Документы дела</a>
+    <h3>Кто забрал содержимое сейфа? Выберите персонажа и пять документов, которые указывают на это</h3>
+    <h2>Выберите персонажа</h2>
+    <div id="characters">
+        <div class="option" data-correct="false">Лариса Кинг</div>
+        <div class="option" data-correct="true">Виктор Смоллс</div>
+        <div class="option" data-correct="false">Елена Морис</div>
+        <div class="option" data-correct="false">Марк Уилсон</div>
+        <div class="option" data-correct="false">Дэвид Харрис</div>
+        <div class="option" data-correct="false">Джейсон Тэйлор</div>
+        <div class="option" data-correct="false">Марта Родригес</div>
+        <div class="option" data-correct="false">Томас Риверс</div>
+    </div>
+
+    <h2>Выберите пять документов</h2>
+    <div id="documents">
+        <div class="document" data-correct="false">Расшифровка звонка в полицию</div>
+        <div class="document" data-correct="true">Протокол осмотра места преступления с фото</div>
+        <div class="document" data-correct="false">Судебно-медицинская экспертиза</div>
+        <div class="document" data-correct="false">Улика кулон (опись и фото)</div>
+        <div class="document" data-correct="false">Улика ноутбук (опись и обрывки романа)</div>
+        <div class="document" data-correct="false">Опрос Ларисы Кинг</div>
+        <div class="document" data-correct="true">Опрос Виктора Смоллса</div>
+        <div class="document" data-correct="false">Опрос Елены Морис</div>
+        <div class="document" data-correct="false">Опрос Марка Уилсона</div>
+        <div class="document" data-correct="false">Опрос Дэвида Харриса</div>
+        <div class="document" data-correct="false">Опрос Джейсона Тэйлора</div>
+        <div class="document" data-correct="false">Опрос Марты Родригес</div>
+        <div class="document" data-correct="false">Опрос Томаса Риверса</div>
+        <div class="document" data-correct="false">Газета 7.02.25</div>
+        <div class="document" data-correct="false">Завещание</div>
+        <div class="document" data-correct="false">Выписка со счета</div>
+        <div class="document" data-correct="false">Визитка бара</div>
+        <div class="document" data-correct="true">Чеки</div>
+        <div class="document" data-correct="false">Отчет о звонках Анны</div>
+        <div class="document" data-correct="false">Дневник Анны</div>
+        <div class="document" data-correct="false">Карта города</div>
+        <div class="document" data-correct="false">Переписка Анны с Еленой</div>
+        <div class="document" data-correct="false">Переписка Анны с Л</div>
+        <div class="document" data-correct="false">Переписка Анны с Виктором</div>
+        <div class="document" data-correct="true">Штраф</div>
+        <div class="document" data-correct="true">Почта Анны</div>
+    </div>
+    <br>
+    <button onclick="checkSelection()">Проверить</button>
+</div>
+
+<script>
+    let selectedCharacter = null;
+    let selectedDocuments = [];
+
+    document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.option').forEach(opt => opt.style.background = '#005599');
+            this.style.background = '#00aa00';
+            selectedCharacter = this;
+        });
+    });
+
+    document.querySelectorAll('.document').forEach(doc => {
+        doc.addEventListener('click', function() {
+            if (selectedDocuments.includes(this)) {
+                this.style.background = '#005599';
+                selectedDocuments = selectedDocuments.filter(d => d !== this);
+            } else if (selectedDocuments.length < 5) {
+                this.style.background = '#00aa00';
+                selectedDocuments.push(this);
+            }
+        });
+    });
+
+    function checkSelection() {
+        if (!selectedCharacter || selectedDocuments.length !== 5) {
+            alert('Выберите одного персонажа и четыре документа!');
+            return;
+        }
+
+        let characterCorrect = selectedCharacter.getAttribute('data-correct') === 'true';
+        let correctDocumentsCount = selectedDocuments.filter(doc => doc.getAttribute('data-correct') === 'true').length;
+
+        if (characterCorrect && correctDocumentsCount === 5) {
+            window.location.href = 'answer1.html';
+        } else {
+            alert(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
+        }
+    }
+</script>
+</body>
+</html>
