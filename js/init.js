@@ -1,50 +1,16 @@
-/*
- * Copyright (c) 2021 Marketify
- * Author: Marketify
- * This file is made for CURRENT TEMPLATE
-*/
-
 jQuery(document).ready(function(){
-
 	"use strict";
 
-	// here all ready functions
-
-	iknow_tm_down();
 	iknow_tm_content_height();
 	iknow_tm_menu_width();
-	iknow_tm_portfolio();
-	iknow_tm_portfolio_popup();
-	iknow_tm_service_popup();
-	iknow_tm_news_popup();
 	iknow_tm_cursor();
 	iknow_tm_imgtosvg();
-	iknow_tm_popup();
 	iknow_tm_data_images();
 	iknow_tm_contact_form();
-	iknow_tm_menubar();
-	iknow_tm_hero_height();
-	iknow_tm_page_transition();
-	dodo_parallax_animation();
-	if(jQuery('.iknow_tm_hero .main_menu, .iknow_tm_fixed_content .menubar').length ){
-		iknow_tm_circular_progress();
-	}
 
-	// used for index-7.html (without click action)
-	if(jQuery('.iknow_tm_extra_demo_2,.iknow_tm_extra_demo').length ){
-		iknow_tm_circular_progress();
-		iknow_tm_owl_carousel();
-	}
-	iknow_tm_extra_menu();
-	iknow_tm_vanta_effects();
 	iknow_tm_trigger_opener();
 	iknow_tm_trigger_menu();
-	iknow_tm_menu_width_new();
 	hashtag();
-	hashtag2();
-	iknow_tm_scrollable();
-	iknow_tm_menu_image_animation();
-
 
 	jQuery(window).load('body', function(){
 		iknow_tm_my_load();
@@ -55,30 +21,6 @@ jQuery(document).ready(function(){
 	});
 
 });
-
-// -----------------------------------------------------
-// ---------------   FUNCTIONS    ----------------------
-// -----------------------------------------------------
-
-// -----------------------------------------------------
-// -----------------    DOWN    ------------------------
-// -----------------------------------------------------
-
-function iknow_tm_down(){
-
-	"use strict";
-
-	jQuery('.anchor').on('click',function(){
-
-		if($.attr(this, 'href') !== '#'){
-			$('html, body').animate({
-				scrollTop: $($.attr(this, 'href')).offset().top-110
-			}, 800);
-		}
-
-		return false;
-	});
-}
 
 // ------------------------------------------------
 // -------------------  ANCHOR --------------------
@@ -131,136 +73,7 @@ function iknow_tm_content_height(){
 	}
 }
 
-// -------------------------------------------------
-// -----------------    PORTFOLIO    ---------------
-// -------------------------------------------------
 
-function iknow_tm_portfolio(){
-
-	"use strict";
-
-	if(jQuery().isotope) {
-
-		// Needed variables
-		var filter		 = jQuery('.iknow_tm_portfolio .portfolio_filter ul');
-
-		if(filter.length){
-			// Isotope Filter
-			filter.find('a').on('click', function(){
-				var element		= jQuery(this);
-				var selector 	= element.attr('data-filter');
-				var list		= element.closest('.iknow_tm_portfolio').find('.portfolio_list').children('ul');
-				list.isotope({
-					filter				: selector,
-					animationOptions	: {
-						duration			: 750,
-						easing				: 'linear',
-						queue				: false
-					}
-				});
-
-				filter.find('a').removeClass('current');
-				element.addClass('current');
-				return false;
-			});
-		}
-	}
-}
-
-// -------------------------------------------------
-// -----------  PORTFOLIO POPUP  -------------------
-// -------------------------------------------------
-
-function iknow_tm_portfolio_popup(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.iknow_tm_modalbox');
-	var button			= jQuery('.iknow_tm_portfolio .portfolio_popup');
-	var closePopup		= modalBox.find('.close');
-
-	button.off().on('click',function(){
-		var element = jQuery(this);
-		var parent 	= element.closest('.list_inner');
-		var content = parent.find('.hidden_content').html();
-		var image	= parent.find('.image .main').data('img-url');
-		var details = parent.find('.details').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title">'+details+'<div>');
-		iknow_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  SERVICE POPUP  -------------------
-// -------------------------------------------------
-
-function iknow_tm_service_popup(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.iknow_tm_modalbox');
-	var button			= jQuery('.iknow_tm_services .iknow_tm_full_link');
-	var closePopup		= modalBox.find('.close');
-
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent  = element.closest('.list_inner');
-		var title	= parent.find('.title').text();
-		var content = parent.find('.hidden_content').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		iknow_tm_data_images();
-		modalBox.find('.service_informations .image').after('<div class="title"><h3>'+title+'</h3></div>');
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// ----------------  NEWS POPUP  -------------------
-// -------------------------------------------------
-
-function iknow_tm_news_popup(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.iknow_tm_modalbox');
-	var button			= jQuery('.iknow_tm_news .iknow_tm_full_link,.iknow_tm_news .news_list ul li .details .title a');
-	var closePopup		= modalBox.find('.close');
-
-	button.on('click',function(){
-		var element  = jQuery(this);
-		var parent 	 = element.closest('.list_inner');
-		var content  = parent.find('.hidden_content').html();
-		var image	 = parent.find('.image .main').data('img-url');
-		var category = parent.find('.details .category a').text();
-		var title	 = parent.find('.details .title a').text();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.news_informations .image').after('<div class="details"><span>'+category+'</span><h3>'+title+'</h3><div>');
-		iknow_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
 
 // -----------------------------------------------------
 // ---------------   MENU WIDTH   ----------------------
@@ -459,7 +272,7 @@ function iknow_tm_cursor(){
         }), e.style.visibility = "visible", t.style.visibility = "visible"
     }
 	}
-};
+}
 
 // -----------------------------------------------------
 // ---------------    IMAGE TO SVG    ------------------
@@ -492,45 +305,6 @@ function iknow_tm_imgtosvg(){
 
 		}, 'xml');
 
-	});
-}
-
-// -----------------------------------------------------
-// --------------------   POPUP    ---------------------
-// -----------------------------------------------------
-
-function iknow_tm_popup(){
-
-	"use strict";
-
-	jQuery('.gallery_zoom').each(function() { // the containers for all your galleries
-		jQuery(this).magnificPopup({
-			delegate: 'a.zoom', // the selector for gallery item
-			type: 'image',
-			gallery: {
-			  enabled:true
-			},
-			removalDelay: 300,
-			mainClass: 'mfp-fade'
-		});
-
-	});
-	jQuery('.popup-youtube, .popup-vimeo').each(function() { // the containers for all your galleries
-		jQuery(this).magnificPopup({
-			disableOn: 700,
-			type: 'iframe',
-			mainClass: 'mfp-fade',
-			removalDelay: 160,
-			preloader: false,
-			fixedContentPos: false
-		});
-	});
-
-	jQuery('.soundcloude_link').magnificPopup({
-	  type : 'image',
-	   gallery: {
-		   enabled: true,
-	   },
 	});
 }
 
@@ -647,267 +421,6 @@ function iknow_tm_owl_carousel(){
 	iknow_tm_imgtosvg();
 }
 
-function iknow_tm_circular_progress(){
-	"use strict";
-
-	var ww		= jQuery(window).width();
-	var circVal;
-
-	if(ww > 1400){
-		circVal = 213;
-	}
-	else if(ww >= 768){
-		circVal = 170;
-	}
-	else{
-		circVal = 120;
-	}
-
-	jQuery('.circular_progress_bar .myCircle').each(function(){
-		var element	= jQuery(this);
-		element.append('<h3 class="number"></h3>');
-		var value	= element.data('value');
-		element.circleProgress({
-			size: circVal,
-			value: 0,
-			animation: {duration: 1400},
-			thickness: 5,
-			fill: "#ff451b",
-			emptyFill: 'rgba(0,0,0,0)',
-			startAngle: -Math.PI/2
-		  }).on('circle-animation-progress', function(event, progress, stepValue) {
-				element.find('h3').text(parseInt(stepValue.toFixed(2)*100) + '%');
-		  });
-		  element.circleProgress('value', 1.0);
-		  setTimeout(function() { element.circleProgress('value', value); }, 1400);
-	});
-}
-
-function by_frenify(wrapper,speed){
-	"use strict";
-
-	var ww		= jQuery(window).width();
-	var circVal;
-
-	if(ww > 1400){
-		circVal = 213;
-	}
-	else if(ww >= 768){
-		circVal = 170;
-	}
-	else{
-		circVal = 120;
-	}
-
-	var element = wrapper.find('.myCircle');
-
-	if(element.length > 0){
-
-		element.each(function(){
-			var e		= jQuery(this);
-			var value	= e.data('value');
-			var speed2 	= 1400;
-
-			if(!e.find('.number').length){
-				e.append('<h3 class="number"></h3>');
-			}
-
-			e.circleProgress({
-				size: circVal,
-				value: 0,
-				animation: {duration: speed2},
-				thickness: 5,
-				fill: "#ff451b",
-				emptyFill: 'rgba(0,0,0,0)',
-				startAngle: -Math.PI/2
-			}).on('circle-animation-progress', function(event, progress, stepValue) {
-				e.find('h3').text(parseInt(stepValue.toFixed(2)*100) + '%');
-			});
-
-			setTimeout(function() { e.circleProgress('value', 1.0); }, speed);
-			setTimeout(function() { e.circleProgress('value', value); }, speed2+speed);
-		});
-
-	}
-}
-
-// -----------------------------------------------------
-// ---------------   EXTRA MENU    ---------------------
-// -----------------------------------------------------
-
-function iknow_tm_extra_menu(){
-
-	"use strict";
-
-	var item	= jQuery('.iknow_tm_extra_menu .unorderest_li');
-	var speed	= 1000;
-	item.each(function(){
-		var element			= jQuery(this);
-		var content			= jQuery(element.find('.iknow_tm_full_link').attr('href')).html();
-		element.append('<div class="details_wrapper"></div>').find('.details_wrapper').html(content);
-	});
-
-
-	var button  = jQuery('.iknow_tm_extra_menu .iknow_tm_full_link');
-
-	button.on('click',function(){
-		var element			= jQuery(this);
-		var li				= element.closest('li');
-
-		var details			= li.find('.details_wrapper');
-		var detailsH		= details.outerHeight() * 0.7;
-		var min = 500, max = 1000;
-		speed = detailsH < min ? min:detailsH;
-		speed = speed > max ? max:speed;
-		speed = parseInt(speed);
-
-		if(li.hasClass('opened')){
-			li.removeClass('opened').find('.details_wrapper').slideUp(speed);return false;
-		}else{
-			li.siblings().removeClass('opened');
-			li.addClass('opened');
-		}
-
-		var index			= li.index();
-		var marginBottom 	= parseInt(li.css("margin-bottom"));
-		var liHeight		= li.find('.list_in').outerHeight();
-		var parent			= li.closest('.menu_list');
-		var top				= parent.offset().top + (liHeight + marginBottom) * index;
-
-		/* Scroll the window to the selected element */
-		$('html, body').animate({
-			scrollTop: top - marginBottom
-		},speed);
-
-		li.siblings().find('.details_wrapper').slideUp(speed);
-		li.find('.details_wrapper').slideDown(speed);
-		by_frenify(li,speed);
-
-		// reinitialization functions
-		iknow_tm_owl_carousel();
-		progress_by_frenify(li);
-		iknow_tm_portfolio_popup();
-		iknow_tm_service_popup();
-		iknow_tm_news_popup();
-		iknow_tm_popup();
-		iknow_tm_portfolio();
-		iknow_tm_contact_form();
-		return false;
-	});
-}
-
-// -----------------------------------------------------
-// -------------------   MENUBAR    --------------------
-// -----------------------------------------------------
-
-function iknow_tm_menubar(){
-
-	"use strict";
-
-	var li		= jQuery('.iknow_tm_fixed_content .menubar ul li, .transition_link a');
-	var button	= li.find('.iknow_tm_full_link');
-
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent	= element.closest('li');
-		var href	= element.attr('href');
-		if(!parent.hasClass('active')){
-			li.removeClass('active');
-			parent.addClass('active');
-			$('.iknow_tm_main_section').removeClass('active');
-			$(href).addClass('active');
-			$('.mainbar').animate({
-				scrollTop: 0
-			},300);
-			iknow_tm_owl_carousel();
-		}
-	});
-}
-
-// -----------------------------------------------------
-// -------------   PAGE TRANSITION    ------------------
-// -----------------------------------------------------
-
-function iknow_tm_page_transition(){
-
-	"use strict";
-
-	var section 		= jQuery('.iknow_tm_animate_section');
-	var allLi 			= jQuery('.transition_link li');
-	var button			= jQuery('.transition_link a');
-	var wrapper 		= jQuery('.iknow_tm_all_wrap');
-	var enter	 		= wrapper.data('enter');
-	var exit		 	= wrapper.data('exit');
-
-	button.on('click',function(){
-		var element 	= jQuery(this);
-		var href		= element.attr('href');
-		if(element.parent().hasClass('iknow_tm_button')){
-			jQuery('.menu.transition_link a[href="'+href+'"]').trigger('click');
-			hashtag2();
-			//return false;
-		}
-		var sectionID 	= jQuery(href);
-		var parent	 	= element.closest('li');
-			if(!parent.hasClass('active')) {
-				allLi.removeClass('active');
-				wrapper.find(section).removeClass('animated '+enter);
-				if(wrapper.hasClass('opened')) {
-					wrapper.find(section).addClass('animated '+exit);
-				}
-				parent.addClass('active');
-				wrapper.addClass('opened');
-				wrapper.find(sectionID).removeClass('animated '+exit).addClass('animated '+enter);
-				jQuery(section).addClass('hidden');
-				jQuery(sectionID).removeClass('hidden').addClass('active');
-				iknow_tm_owl_carousel();
-				iknow_tm_circular_progress();
-			}
-		//return false;
-	});
-}
-
-// -----------------------------------------------------
-// -------------    PARALLAX ANIMATION    --------------
-// -----------------------------------------------------
-
-function dodo_parallax_animation(){
-
-	"use strict";
-
-	jQuery('.parallax').each(function(){
-		var element = jQuery(this);
-		var scene = element.get(0);
-		var parallax = new Parallax(scene, {
-			relativeInput: true,
-			onReady: function() { console.log('ready!');
-			} });
-		});
-}
-
-// -----------------------------------------------------
-// -------------------    VANTA EFFECT    --------------
-// -----------------------------------------------------
-
-function iknow_tm_vanta_effects(){
-
-	"use strict";
-	if($('.iknow_tm_hero_extra .background .image').length){
-		VANTA.WAVES({
-			el: ".iknow_tm_hero_extra .background .image",
-			mouseControls: true,
-			touchControls: true,
-			gyroControls: false,
-			minHeight: 0,
-			minWidth: 0,
-			scale: 1.00,
-			scaleMobile: 1.00,
-			color: 0xb65634
-		})
-	}
-}
-
-
 // -----------------------------------------------------
 // ---------------   TRIGGER MENU    -------------------
 // -----------------------------------------------------
@@ -933,7 +446,6 @@ function iknow_tm_trigger_opener(){
 			audio2[0].play();
 			menu.addClass('opened');
 		}
-		//return false;
 	});
 }
 
@@ -961,12 +473,6 @@ function iknow_tm_trigger_menu(){
 		}
 		return false;
 	});
-
-	/*mobileMenuList.on('click',function(){
-		jQuery('.iknow_tm_mobile_menu .trigger .hamburger').removeClass('is-active');
-		mobileMenu.slideUp();
-		return false;
-	});*/
 }
 
 // -----------------------------------------------------
@@ -1008,50 +514,6 @@ function iknow_tm_menu_width_action(element,action){
 		}
 	}
 
-}
-
-function iknow_tm_menu_width_new(){
-
-	"use strict";
-
-	var ww	= jQuery(window).width();
-	var btn	= jQuery('.iknow_tm_mainpart_new_2 .main_menu ul li a');
-
-	btn.on('mouseenter',function(){
-		iknow_tm_menu_width_action(jQuery(this),'active');
-	}).on('mouseleave',function(){
-		iknow_tm_menu_width_action(jQuery(this),'');
-	});
-
-	btn.on('click',function(){
-		var element 	= jQuery(this);
-		var li			= element.closest('li');
-		if(li.hasClass('current') && !li.hasClass('entered')){
-			return false;
-		}
-		li.addClass('current fixed');
-
-
-		li.siblings().removeClass('current').css({width:'70px'});
-		if(ww <= 1400){
-			li.siblings().removeClass('current').css({width:'50px'});
-		}
-
-		if(!li.hasClass('entered')){
-			var elWidth		= li.outerWidth();
-			var textWidth	= li.find('span').outerWidth();
-			li.css({width: elWidth+textWidth+'px'});
-		}
-
-		return false;
-	});
-
-	jQuery('.iknow_tm_mainpart_new_2 .main_menu ul li.current').each(function(){
-		var element 	= jQuery(this);
-		var elWidth		= element.outerWidth();
-		var textWidth	= element.find('span').outerWidth();
-		element.css({width: elWidth+textWidth+'px'});
-	});
 }
 
 
@@ -1113,66 +575,44 @@ function currentLink2(ccc,e){
 
 }
 
-
-function iknow_tm_scrollable(){
-
-	"use strict";
-
-	var WW				= jQuery(window).width();
-	var H				= jQuery(window).height();
-	var scrollable		= jQuery('.iknow_tm_sidebar_3 .menu.scrollable');
-	var verMenu			= jQuery('.iknow_tm_sidebar_3 .menu');
-	var topbar			= jQuery('.iknow_tm_extra_demo .iknow_tm_topbar').outerHeight();
-	var image			= jQuery('.iknow_tm_sidebar_3 .image').outerHeight()+45;
-	var footerHeight	= jQuery('.iknow_tm_extra_demo .iknow_tm_copyright').outerHeight();
-
-	if(WW<=1400){
-		verMenu.css({height:H-topbar-image-footerHeight});
-	}
-
-	verMenu.css({height:H-topbar-image-footerHeight-90});
-
-	if(WW<=1400){
-		scrollable.each(function(){
-			var element		= jQuery(this);
-
-			element.css({height:H-topbar-image-footerHeight}).niceScroll({
-				touchbehavior:false,
-				cursorwidth:0,
-				autohidemode:true,
-				cursorborder:"0px solid #eee"
-			});
-		});
-	}
-
-	scrollable.each(function(){
-		var element		= jQuery(this);
-
-		element.css({height:H-topbar-image-footerHeight-90}).niceScroll({
-			touchbehavior:false,
-			cursorwidth:0,
-			autohidemode:true,
-			cursorborder:"0px solid #eee"
-		});
-	});
+// -------------------------------------------------
+// ---------   Check email  ---------------
+// -------------------------------------------------
+function showModal(message) {
+	document.getElementById('modalMessage').innerText = message;
+	document.getElementById('modal').style.display = 'flex';
 }
 
-// -------------------------------------------------
-// ---------   MENU IMAGE ANIMATION  ---------------
-// -------------------------------------------------
+function closeModal() {
+	document.getElementById('modal').style.display = 'none';
+}
 
-function iknow_tm_menu_image_animation(){
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', function(e) {
+	if (e.target === this) closeModal();
+});
 
-	"use strict";
+function checkEmail(){
+	event.preventDefault();
+	const email = $('#email-form input')[0]?.value;
+	const pass = $('#email-form input')[1]?.value;
 
-	jQuery(window).on('scroll',function(){
-		var menu	 		= jQuery('.iknow_tm_sidebar_3');
-		var WinOffset		= jQuery(window).scrollTop();
+	if (email.trim().length === 0 || pass.trim().length === 0) {
+		showModal('Поля логин и пароль не должны быть пустыми!');
+		return false;
+	}
 
-		if(WinOffset >= 100){
-			menu.addClass('animate');
-		}else{
-			menu.removeClass('animate');
-		}
-	});
+	if (email.trim().toLowerCase() !== 'annagrace@deltaplay.ru') {
+		showModal('Указанный логин не существует');
+		return false;
+	} else if (pass.trim().length !== 9) {
+		showModal('Пароль должен быть 9 символов');
+		return false;
+	} else if (pass.trim() !== '14R522OE!') {
+		showModal('Неверный пароль');
+		return false;
+	} else {
+		window.location.href = 'mail.html';
+		return false;
+	}
 }

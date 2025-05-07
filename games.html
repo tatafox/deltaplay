@@ -35,21 +35,7 @@
 </div>
 <!-- /PRELOADER -->
 
-<!-- WRAPPER ALL -->
-<!--<div class="iknow_tm_all_wrap" data-magic-cursor="show" data-animation-in="rotateInDownLeft" data-animation-out="rotateOutDownLeft"> -->
 <div class="iknow_tm_all_wrap" data-magic-cursor="show" data-enter="zoomInDown" data-exit="slideInLeft">
-	<!-- If you want disable magic cursor change value to "hide" -->
-
-	<!-- MODALBOX -->
-	<div class="iknow_tm_modalbox">
-		<div class="box_inner">
-			<div class="close">
-				<a href="#"><img class="svg" src="img/svg/cancel.svg" alt="" /></a>
-			</div>
-			<div class="description_wrap"></div>
-		</div>
-	</div>
-	<!-- /MODALBOX -->
 
 	<div class="iknow_tm_extra_demo">
 
@@ -118,6 +104,7 @@
 													<h3>Дело 29. Последняя глава</h3>
 												</div>
 												<a class="iknow_tm_full_link" href="case29/answer.html"></a>
+												<a class="iknow_tm_full_link" href="case29/answer.html"></a>
 											</div>
 										</li>
 									</ul>
@@ -176,7 +163,7 @@
 	<div class="footer-container">
 		<div class="container">
 			<div class="footer__left">
-				<a href="/" class="footer__logo">
+				<a href="index.html" class="footer__logo">
 					<img width="180" src="img/deltaplay.png" alt="Дельтаплей">
 				</a>
 				<div>
@@ -214,17 +201,24 @@
 			</div>
 			<div class="footer__right">
 				<div class="email-container">
-					<form action="">
+					<form id="email-form" class="email-form">
 						<p>Войти в почту</p>
-						<input type="text" value=""><br>
+						<input type="text" value="" placeholder="demo@deltaplay.ru"><br>
 						<input type="password"><br>
-						<input type="submit" value="SIGN IN"><br>
+						<button onclick="checkEmail()" type="button">SIGN IN</button><br>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </footer>
+<!-- Popup modal -->
+<div class="modal" id="modal">
+	<div class="modal-content" id="modalContent">
+		<span class="modal-close" id="modalClose">&times;</span>
+		<h2 id="modalMessage">Сообщение</h2>
+	</div>
+</div>
 
 <!-- SCRIPTS -->
 <script src="js/jquery.js"></script>

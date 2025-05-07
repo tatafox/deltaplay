@@ -4,108 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор Персонажа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #001f3f;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-        a {
-            display: block;
-            font-family: Arial, sans-serif;
-            color: #00aa00;
-            text-align: center;
-            margin: 40px;
-            font-size: 25px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #003366;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        .option, .document {
-            display: block;
-            padding: 10px;
-            margin: 10px;
-            background: #005599;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .option:hover, .document:hover {
-            background: #0077cc;
-        }
-        button {
-            background: #ffcc00;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background: #ffdd44;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <div class="container">
-    <h3>Поздравляем! Вы верно ответили на первый вопрос!</h3>
-    <div class="description">В вашем деле появились новые улики</div>
-    <a href="https://cloud.mail.ru/public/yJL4/ML1cEUnoy" target="_blank">Документы</a>
-    <h3>Теперь ответьте на вопрос, кто убйца? Выберите персонажа и три документа, которые указывают на это</h3>
+    <h3>Поздравляем! Вы стали еще ближе к разгадке!</h3>
+    <div class="description">В вашем деле появились еще улики</div>
+    <h3>Вы можете ответить на вопрос, или воспользоваться подсказкой, если вы зашли в тупик</h3>
+    <div class="hints">
+        <button onclick="showHint(1)">Подсказка 1</button>
+        <button onclick="showHint(2)">Подсказка 2</button>
+        <button onclick="showHint(3)">Подсказка 3</button>
+        <button onclick="showHint(4)">Подсказка 4</button>
+        <button onclick="showHint(5)">Подсказка 5</button>
+    </div>
+    <h3>Пришло время ответить на вопрос, кто убйца? Выберите персонажа и три документа, которые указывают на это</h3>
     <h2>Выберите персонажа</h2>
     <div id="characters">
-        <div class="option" data-correct="false">Лариса Кинг</div>
-        <div class="option" data-correct="false">Виктор Смоллс</div>
-        <div class="option" data-correct="false">Елена Морис</div>
-        <div class="option" data-correct="false">Марк Уилсон</div>
-        <div class="option" data-correct="false">Дэвид Харрис</div>
-        <div class="option" data-correct="true">Джейсон Тэйлор</div>
-        <div class="option" data-correct="false">Марта Родригес</div>
-        <div class="option" data-correct="false">Томас Риверс</div>
+        <div class="option" data-id="char1">Лариса Кинг</div>
+        <div class="option" data-id="char2">Виктор Смоллс</div>
+        <div class="option" data-id="char3">Елена Морис</div>
+        <div class="option" data-id="char4">Марк Уилсон</div>
+        <div class="option" data-id="char5">Дэвид Харрис</div>
+        <div class="option" data-id="char6">Джейсон Тэйлор</div>
+        <div class="option" data-id="char7">Марта Родригес</div>
+        <div class="option" data-id="char8">Томас Риверс</div>
     </div>
 
-    <h2>Выберите три документа</h2>
+    <h2>Выберите пять документов</h2>
     <div id="documents">
-        <div class="document" data-correct="false">Расшифровка звонка в полицию</div>
-        <div class="document" data-correct="false">Протокол осмотра места преступления с фото</div>
-        <div class="document" data-correct="false">Судебно-медицинская экспертиза</div>
-        <div class="document" data-correct="true">Улика кулон (опись и фото)</div>
-        <div class="document" data-correct="false">Улика ноутбук (опись и обрывки романа)</div>
-        <div class="document" data-correct="false">Опрос Ларисы Кинг</div>
-        <div class="document" data-correct="false">Опрос Виктора Смоллса</div>
-        <div class="document" data-correct="false">Опрос Елены Морис</div>
-        <div class="document" data-correct="false">Опрос Марка Уилсона</div>
-        <div class="document" data-correct="false">Опрос Дэвида Харриса</div>
-        <div class="document" data-correct="false">Опрос Джейсона Тэйлора</div>
-        <div class="document" data-correct="false">Опрос Марты Родригес</div>
-        <div class="document" data-correct="false">Опрос Томаса Риверса</div>
-        <div class="document" data-correct="false">Газета 7.02.25</div>
-        <div class="document" data-correct="false">Завещание</div>
-        <div class="document" data-correct="false">Выписка со счета</div>
-        <div class="document" data-correct="false">Визитка бара</div>
-        <div class="document" data-correct="false">Чеки</div>
-        <div class="document" data-correct="true">Отчет о звонках Анны</div>
-        <div class="document" data-correct="false">Дневник Анны</div>
-        <div class="document" data-correct="false">Карта города</div>
-        <div class="document" data-correct="false">Переписка Анны с Еленой</div>
-        <div class="document" data-correct="false">Переписка Анны с Л</div>
-        <div class="document" data-correct="false">Переписка Анны с Виктором</div>
-        <div class="document" data-correct="false">Штраф</div>
-        <div class="document" data-correct="false">Почта Анны</div>
-        <div class="document" data-correct="false">Допрос Виктора Смоллса</div>
-        <div class="document" data-correct="false">Опись драгоценностей</div>
-        <div class="document" data-correct="false">Допрос Елены Морис</div>
-        <div class="document" data-correct="true">Газета 28.02.25</div>
+        <div class="document" data-id="doc1">Расшифровка звонка в полицию</div>
+        <div class="document" data-id="doc2">Протокол осмотра места преступления с фото</div>
+        <div class="document" data-id="doc3">Судебно-медицинская экспертиза</div>
+        <div class="document" data-id="doc4">Улика кулон (опись и фото)</div>
+        <div class="document" data-id="doc5">Улика ноутбук (опись и обрывки романа)</div>
+        <div class="document" data-id="doc6">Опрос Ларисы Кинг</div>
+        <div class="document" data-id="doc7">Опрос Виктора Смоллса</div>
+        <div class="document" data-id="doc8">Опрос Елены Морис</div>
+        <div class="document" data-id="doc9">Опрос Марка Уилсона</div>
+        <div class="document" data-id="doc10">Опрос Дэвида Харриса</div>
+        <div class="document" data-id="doc11">Опрос Джейсона Тэйлора</div>
+        <div class="document" data-id="doc12">Опрос Марты Родригес</div>
+        <div class="document" data-id="doc13">Опрос Томаса Риверса</div>
+        <div class="document" data-id="doc14">Газета 7.02.20</div>
+        <div class="document" data-id="doc15">Завещание</div>
+        <div class="document" data-id="doc16">Выписка со счета</div>
+        <div class="document" data-id="doc17">Визитка бара</div>
+        <div class="document" data-id="doc18">Чеки</div>
+        <div class="document" data-id="doc19">Отчет о звонках Анны</div>
+        <div class="document" data-id="doc20">Дневник Анны</div>
+        <div class="document" data-id="doc21">Карта города</div>
+        <div class="document" data-id="doc22">Переписка Анны с Еленой</div>
+        <div class="document" data-id="doc23">Переписка Анны с Л</div>
+        <div class="document" data-id="doc24">Переписка Анны с Виктором</div>
+        <div class="document" data-id="doc25">Штраф</div>
+        <div class="document" data-id="doc26">Почта Анны</div>
+        <div class="document" data-id="doc27">Допрос Виктора Смоллса</div>
+        <div class="document" data-id="doc28">Опись драгоценностей</div>
+        <div class="document" data-id="doc29">Допрос Елены Морис</div>
+        <div class="document" data-id="doc30">Газета 28.02.20</div>
     </div>
     <br>
     <button onclick="checkSelection()">Проверить</button>
+</div>
+
+<!-- Popup modal -->
+<div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 id="modalMessage">Сообщение</h2>
+    </div>
 </div>
 
 <script>
@@ -114,8 +84,8 @@
 
     document.querySelectorAll('.option').forEach(option => {
         option.addEventListener('click', function() {
-            document.querySelectorAll('.option').forEach(opt => opt.style.background = '#005599');
-            this.style.background = '#00aa00';
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
             selectedCharacter = this;
         });
     });
@@ -123,30 +93,58 @@
     document.querySelectorAll('.document').forEach(doc => {
         doc.addEventListener('click', function() {
             if (selectedDocuments.includes(this)) {
-                this.style.background = '#005599';
+                this.classList.remove('selected');
                 selectedDocuments = selectedDocuments.filter(d => d !== this);
             } else if (selectedDocuments.length < 3) {
-                this.style.background = '#00aa00';
+                this.classList.add('selected');
                 selectedDocuments.push(this);
             }
         });
     });
 
+    function showModal(message) {
+        document.getElementById('modalMessage').innerText = message;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
     function checkSelection() {
         if (!selectedCharacter || selectedDocuments.length !== 3) {
-            alert('Выберите одного персонажа и три документа!');
+            showModal('Выберите одного персонажа и три документа!');
             return;
         }
 
-        let characterCorrect = selectedCharacter.getAttribute('data-correct') === 'true';
-        let correctDocumentsCount = selectedDocuments.filter(doc => doc.getAttribute('data-correct') === 'true').length;
+        const characterCorrect = selectedCharacter.getAttribute('data-id') === 'char6';
+        const correctIds = ["doc30", "doc19", "doc4"];
+        const correctDocumentsCount = selectedDocuments.filter(doc => correctIds.includes(doc.getAttribute('data-id'))).length;
+
 
         if (characterCorrect && correctDocumentsCount === 3) {
-            window.location.href = 'answer3.html';
+            window.location.href = 'final.html';
         } else {
-            alert(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
+            showModal(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
         }
+    }
+
+    function showHint(number) {
+        const hints = {
+            1: "Может быть Анна узнала что-то важное перед смертью?",
+            2: "Какое преступление кроме смерти Анны, так и не раскрыто?",
+            3: "Какая важная улика, которую так и не смогли объяснить, была на месте преступления?",
+            4: "Присмотритесь внимательнее к прессе, там порой встречается информация, на которую никто не обращает внимания. А зря...",
+            5: "Кому все-таки звонила Анна перед смертью?"
+        };
+        showModal(hints[number]);
     }
 </script>
 </body>
 </html>
+

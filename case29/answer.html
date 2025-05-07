@@ -4,102 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор Персонажа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #001f3f;
-            color: #633F2E;
-            text-align: center;
-            padding: 20px;
-            background: url("../img/case29bg.jpg") no-repeat;
-            background-size: cover;
-            height: 100vh;
-            box-sizing: border-box;
-            margin: 0;
-        }
-        a {
-            display: block;
-            font-family: Arial, sans-serif;
-            color: #00aa00;
-            text-align: center;
-            margin: 40px;
-            font-size: 25px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #F0D2B0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(226, 194, 153, 0.5);
-            height: 90%;
-            overflow: auto;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .container::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-        }
-        .option, .document {
-            display: block;
-            padding: 10px;
-            margin: 10px;
-            color: white;
-            background: #534C4C;
-            border: 3px solid #534C4C;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-            transition: all .3s ease;
-        }
-        .option:hover, .document:hover {
-            background: transparent;
-            border: 3px solid #534C4C;
-            color: #534C4C;
-        }
-        .option.selected, .document.selected {
-            color: white;
-            background: #882C2C;
-            border: 3px solid #882C2C;
-        }
-        .option.selected:hover, .document.selected:hover {
-            color: white;
-            background: #882C2C;
-            border: 3px solid #882C2C;
-        }
-        button {
-            border: 3px solid #882C2C;
-            background: #882C2C;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-            transition: all .3s ease;
-        }
-        button:hover {
-            background: transparent;
-            border: 3px solid #882C2C;
-            color: #882C2C;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <div class="container">
-   <!-- <h1>Добро пожаловать в игру!</h1>
-    <div class="description">Вам предоставлены материалы дела, которое полиция так и не смогла разгадать. Быть может вы справитесь лучше. Вам необходимо изучить материалы дела (изучайте в том порядке, в котором вам удобно). И после этого ответить на поставленный вопрос. После чего вы получите новые подсказки и новый вопрос. Удачи в расследовании, детективы! </div>
-    <a href="https://cloud.mail.ru/public/heGi/cHdc1LSLM" target="_blank">Документы дела</a>-->
+    <h3>Вы можете ответить на вопрос, или воспользоваться подсказкой, если вы зашли в тупик</h3>
+    <div class="hints">
+        <button onclick="showHint(1)">Подсказка 1</button>
+        <button onclick="showHint(2)">Подсказка 2</button>
+        <button onclick="showHint(3)">Подсказка 3</button>
+        <button onclick="showHint(4)">Подсказка 4</button>
+        <button onclick="showHint(5)">Подсказка 5</button>
+    </div>
     <h3>Кто забрал содержимое сейфа? Выберите персонажа и пять документов, которые указывают на это</h3>
     <h2>Выберите персонажа</h2>
     <div id="characters">
@@ -115,35 +33,43 @@
 
     <h2>Выберите пять документов</h2>
     <div id="documents">
-        <div class="document" data-correct="false">Расшифровка звонка в полицию</div>
-        <div class="document" data-correct="true">Протокол осмотра места преступления с фото</div>
-        <div class="document" data-correct="false">Судебно-медицинская экспертиза</div>
-        <div class="document" data-correct="false">Улика кулон (опись и фото)</div>
-        <div class="document" data-correct="false">Улика ноутбук (опись и обрывки романа)</div>
-        <div class="document" data-correct="false">Опрос Ларисы Кинг</div>
-        <div class="document" data-correct="true">Опрос Виктора Смоллса</div>
-        <div class="document" data-correct="false">Опрос Елены Морис</div>
-        <div class="document" data-correct="false">Опрос Марка Уилсона</div>
-        <div class="document" data-correct="false">Опрос Дэвида Харриса</div>
-        <div class="document" data-correct="false">Опрос Джейсона Тэйлора</div>
-        <div class="document" data-correct="false">Опрос Марты Родригес</div>
-        <div class="document" data-correct="false">Опрос Томаса Риверса</div>
-        <div class="document" data-correct="false">Газета 7.02.25</div>
-        <div class="document" data-correct="false">Завещание</div>
-        <div class="document" data-correct="false">Выписка со счета</div>
-        <div class="document" data-correct="false">Визитка бара</div>
-        <div class="document" data-correct="true">Чеки</div>
-        <div class="document" data-correct="false">Отчет о звонках Анны</div>
-        <div class="document" data-correct="false">Дневник Анны</div>
-        <div class="document" data-correct="false">Карта города</div>
-        <div class="document" data-correct="false">Переписка Анны с Еленой</div>
-        <div class="document" data-correct="false">Переписка Анны с Л</div>
-        <div class="document" data-correct="false">Переписка Анны с Виктором</div>
-        <div class="document" data-correct="true">Штраф</div>
-        <div class="document" data-correct="true">Почта Анны</div>
+        <div class="document" data-id="doc1">Расшифровка звонка в полицию</div>
+        <div class="document" data-id="doc2">Протокол осмотра места преступления с фото</div>
+        <div class="document" data-id="doc3">Судебно-медицинская экспертиза</div>
+        <div class="document" data-id="doc4">Улика кулон (опись и фото)</div>
+        <div class="document" data-id="doc5">Улика ноутбук (опись и обрывки романа)</div>
+        <div class="document" data-id="doc6">Опрос Ларисы Кинг</div>
+        <div class="document" data-id="doc7">Опрос Виктора Смоллса</div>
+        <div class="document" data-id="doc8">Опрос Елены Морис</div>
+        <div class="document" data-id="doc9">Опрос Марка Уилсона</div>
+        <div class="document" data-id="doc10">Опрос Дэвида Харриса</div>
+        <div class="document" data-id="doc11">Опрос Джейсона Тэйлора</div>
+        <div class="document" data-id="doc12">Опрос Марты Родригес</div>
+        <div class="document" data-id="doc13">Опрос Томаса Риверса</div>
+        <div class="document" data-id="doc14">Газета 7.02.20</div>
+        <div class="document" data-id="doc15">Завещание</div>
+        <div class="document" data-id="doc16">Выписка со счета</div>
+        <div class="document" data-id="doc17">Визитка бара</div>
+        <div class="document" data-id="doc18">Чеки</div>
+        <div class="document" data-id="doc19">Отчет о звонках Анны</div>
+        <div class="document" data-id="doc20">Дневник Анны</div>
+        <div class="document" data-id="doc21">Карта города</div>
+        <div class="document" data-id="doc22">Переписка Анны с Еленой</div>
+        <div class="document" data-id="doc23">Переписка Анны с Л</div>
+        <div class="document" data-id="doc24">Переписка Анны с Виктором</div>
+        <div class="document" data-id="doc25">Штраф</div>
+        <div class="document" data-id="doc26">Почта Анны</div>
     </div>
     <br>
     <button onclick="checkSelection()">Проверить</button>
+</div>
+
+<!-- Popup modal -->
+<div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 id="modalMessage">Сообщение</h2>
+    </div>
 </div>
 
 <script>
@@ -170,20 +96,47 @@
         });
     });
 
+    function showModal(message) {
+        document.getElementById('modalMessage').innerText = message;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
     function checkSelection() {
         if (!selectedCharacter || selectedDocuments.length !== 5) {
-            alert('Выберите одного персонажа и четыре документа!');
+            showModal('Выберите одного персонажа и ПЯТЬ документов!');
             return;
         }
 
-        let characterCorrect = selectedCharacter.getAttribute('data-id') === 'char2';
-        let correctDocumentsCount = selectedDocuments.filter(doc => doc.getAttribute('data-correct') === 'true').length;
+        const characterCorrect = selectedCharacter.getAttribute('data-id') === 'char2';
+        const correctIds = ["doc2", "doc18", "doc26", "doc7", "doc25"];
+        const correctDocumentsCount = selectedDocuments.filter(doc => correctIds.includes(doc.getAttribute('data-id'))).length;
+
 
         if (characterCorrect && correctDocumentsCount === 5) {
             window.location.href = 'answer1.html';
         } else {
-            alert(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
+            showModal(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
         }
+    }
+
+    function showHint(number) {
+        const hints = {
+            1: "Проверьте алиби персонажей. Кто точно врет о том где был весь вечер?",
+            2: "Присмотресь к документам за эту дату, в которых есть время",
+            3: "Внимательно присмотритесь к дневнику. Быть может он ведет куда-то еще?",
+            4: "Поищите почту. Пароль от почты: номер дома + номерной знак машины Анны + !",
+            5: "Кто мог оставить след под окном? Советуем присмотреться к фото с вечеринки"
+        };
+        showModal(hints[number]);
     }
 </script>
 </body>
