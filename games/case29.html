@@ -1,148 +1,243 @@
 <!DOCTYPE html>
-<html lang="ru">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выбор Персонажа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #001f3f;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
-        a {
-            display: block;
-            font-family: Arial, sans-serif;
-            color: #00aa00;
-            text-align: center;
-            margin: 40px;
-            font-size: 25px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #003366;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        .option, .document {
-            display: block;
-            padding: 10px;
-            margin: 10px;
-            background: #005599;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .option:hover, .document:hover {
-            background: #0077cc;
-        }
-        button {
-            background: #ffcc00;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background: #ffdd44;
-        }
-    </style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="description" content="Детективная игра, расследование, почуствуй себя детективом">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Дело 29.Последняя глава</title>
+
+    <!-- STYLES -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/plugins.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <!--[if lt IE 9]> <script type="text/javascript" src="../js/modernizr.custom.js"></script> <![endif]-->
+    <!-- /STYLES -->
+
 </head>
+
 <body>
-<div class="container">
-    <h1>Добро пожаловать в игру!</h1>
-    <div class="description">Вам предоставлены материалы дела, которое полиция так и не смогла разгадать. Быть может вы справитесь лучше. Вам необходимо изучить материалы дела (изучайте в том порядке, в котором вам удобно). И после этого ответить на поставленный вопрос. После чего вы получите новые подсказки и новый вопрос. Удачи в расследовании, детективы! </div>
-    <a href="https://cloud.mail.ru/public/heGi/cHdc1LSLM" target="_blank">Документы дела</a>
-    <h3>Кто забрал содержимое сейфа? Выберите персонажа и пять документов, которые указывают на это</h3>
-    <h2>Выберите персонажа</h2>
-    <div id="characters">
-        <div class="option" data-correct="false">Лариса Кинг</div>
-        <div class="option" data-correct="true">Виктор Смоллс</div>
-        <div class="option" data-correct="false">Елена Морис</div>
-        <div class="option" data-correct="false">Марк Уилсон</div>
-        <div class="option" data-correct="false">Дэвид Харрис</div>
-        <div class="option" data-correct="false">Джейсон Тэйлор</div>
-        <div class="option" data-correct="false">Марта Родригес</div>
-        <div class="option" data-correct="false">Томас Риверс</div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="loader_line"></div>
+</div>
+<!-- /PRELOADER -->
+
+<div class="iknow_tm_all_wrap" data-magic-cursor="show" data-enter="zoomInDown" data-exit="slideInLeft">
+
+    <div class="iknow_tm_extra_demo">
+
+        <div class="iknow_tm_fixed_background" data-img-url="../img/hero/4.jpg"></div>
+
+        <!-- TOPBAR -->
+        <div class="iknow_tm_topbar smaller" data-position="fixed">
+            <div class="topbar_inner">
+                <div class="logo">
+                    <a href="#"><img src="../img/deltaplay.png" alt="" /></a>
+                </div>
+                <div class="wrapper">
+                    <div class="menu transition_link">
+                        <ul>
+                            <li><a href="../index.html">Главная</a></li>
+                            <li class="active"><a href="../games.html">Наши игры</a></li>
+                            <li><a href="../contact-us.html">Контакты</a></li>
+                        </ul>
+                        <span class="ccc"></span>
+                    </div>
+                    <div class="trigger">
+                        <div class="hamburger hamburger--slider">
+                            <div class="hamburger-box">
+                                <div class="hamburger-inner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /TOPBAR -->
+
+        <!-- HERO -->
+        <div class="iknow_tm_hero">
+            <div class="background_shape"></div>
+            <div class="hero_content">
+                <div class="container">
+                    <div class="content_inner">
+                        <!-- GAMES -->
+                        <div id="games" class="iknow_tm_main_section">
+                            <div class="iknow_tm_game">
+
+                                        <div class="top_image">
+                                            <img src="../img/delo29.png" alt="" />
+                                            <div class="main" data-img-url="../img/delo29.png"></div>
+                                        </div>
+                                        <div class="details">
+                                            <span>Последняя глава — это не финал. Это начало правды.</span>
+                                            <h3>Дело 29. Последняя глава</h3>
+                                        </div>
+                                            <div class="popup_details">
+                                                <div class="main_details">
+                                                    <div class="textbox">
+                                                        <p>«Дело 29. Последняя глава» — захватывающая настольная детективная игра, в которой вам предстоит раскрыть загадочное убийство писательницы Анны Грейс, совершённое 22 февраля 2020 года. Следствие зашло в тупик: мотив есть у многих, но улик — ни одной. Изучайте материалы дела, анализируйте улики и версии, стройте логические цепочки и выходите на настоящего преступника. Игра для тех, кто любит расследования, загадки и атмосферу напряжённого поиска правды. Подходит для одного или нескольких игроков. Смогли бы вы раскрыть дело, которое не поддалось полиции?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="additional_images">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="list_inner">
+                                                                <div class="my_image">
+                                                                    <img src="../img/delo29.png" alt="" />
+                                                                    <div class="main" data-img-url="../img/delo29.png"></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="list_inner">
+                                                                <div class="my_image">
+                                                                    <img src="../img/delo29.png" alt="" />
+                                                                    <div class="main" data-img-url="../img/delo29.png"></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="list_inner">
+                                                                <div class="my_image">
+                                                                    <img src="../img/delo29.png" alt="" />
+                                                                    <div class="main" data-img-url="../img/delo29.png"></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                        <!-- /GAMES -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Shapes -->
+            <div class="simple_shapes">
+                <span class="one anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="two anim_moveLeft"><img class="svg" src="../img/svg/shapes/dot.svg" alt="" /></span>
+                <span class="three anim_moveTop"><img class="svg" src="../img/svg/shapes/dot-2.svg" alt="" /></span>
+                <span class="four anim_circle"><img class="svg" src="../img/svg/shapes/1.svg" alt="" /></span>
+                <span class="five anim_circle"><img class="svg" src="../img/svg/shapes/8.svg" alt="" /></span>
+                <span class="six anim_circle"><img class="svg" src="../img/svg/shapes/3.svg" alt="" /></span>
+                <span class="seven anim_right"><img class="svg" src="../img/svg/shapes/4.svg" alt="" /></span>
+                <span class="eight anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="nine anim_circle"><img class="svg" src="../img/svg/shapes/3.svg" alt="" /></span>
+                <span class="ten anim_moveLeft"><img class="svg" src="../img/svg/shapes/4.svg" alt="" /></span>
+                <span class="eleven anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="twelve anim_extra"><img class="svg" src="../img/svg/shapes/2.svg" alt="" /></span>
+                <span class="thirteen anim_circle"><img class="svg" src="../img/svg/shapes/5.svg" alt="" /></span>
+                <span class="fourteen anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="fifteen anim_circle"><img class="svg" src="../img/svg/shapes/3.svg" alt="" /></span>
+                <span class="sixteen anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="seventeen anim_circle"><img class="svg" src="../img/svg/shapes/5.svg" alt="" /></span>
+                <span class="eighteen anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="nineteen anim_scale"><img class="svg" src="../img/svg/shapes/9.svg" alt="" /></span>
+                <span class="twenty anim_circle"><img class="svg" src="../img/svg/shapes/1.svg" alt="" /></span>
+            </div>
+            <!-- /Hero Shapes -->
+
+        </div>
+        <!-- /HERO -->
+
     </div>
 
-    <h2>Выберите пять документов</h2>
-    <div id="documents">
-        <div class="document" data-correct="false">Расшифровка звонка в полицию</div>
-        <div class="document" data-correct="true">Протокол осмотра места преступления с фото</div>
-        <div class="document" data-correct="false">Судебно-медицинская экспертиза</div>
-        <div class="document" data-correct="false">Улика кулон (опись и фото)</div>
-        <div class="document" data-correct="false">Улика ноутбук (опись и обрывки романа)</div>
-        <div class="document" data-correct="false">Опрос Ларисы Кинг</div>
-        <div class="document" data-correct="true">Опрос Виктора Смоллса</div>
-        <div class="document" data-correct="false">Опрос Елены Морис</div>
-        <div class="document" data-correct="false">Опрос Марка Уилсона</div>
-        <div class="document" data-correct="false">Опрос Дэвида Харриса</div>
-        <div class="document" data-correct="false">Опрос Джейсона Тэйлора</div>
-        <div class="document" data-correct="false">Опрос Марты Родригес</div>
-        <div class="document" data-correct="false">Опрос Томаса Риверса</div>
-        <div class="document" data-correct="false">Газета 7.02.25</div>
-        <div class="document" data-correct="false">Завещание</div>
-        <div class="document" data-correct="false">Выписка со счета</div>
-        <div class="document" data-correct="false">Визитка бара</div>
-        <div class="document" data-correct="true">Чеки</div>
-        <div class="document" data-correct="false">Отчет о звонках Анны</div>
-        <div class="document" data-correct="false">Дневник Анны</div>
-        <div class="document" data-correct="false">Карта города</div>
-        <div class="document" data-correct="false">Переписка Анны с Еленой</div>
-        <div class="document" data-correct="false">Переписка Анны с Л</div>
-        <div class="document" data-correct="false">Переписка Анны с Виктором</div>
-        <div class="document" data-correct="true">Штраф</div>
-        <div class="document" data-correct="true">Почта Анны</div>
+    <!-- AUDIO FOR CLICK -->
+    <audio id="audio1"><source src="../audio/1.mp3"></audio>
+    <audio id="audio2"><source src="../audio/2.mp3"></audio>
+    <!-- /AUDIO FOR CLICK -->
+
+    <!-- MAGIC CURSOR -->
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+    <!-- /MAGIC CURSOR -->
+
+</div>
+<!-- / WRAPPER ALL -->
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="container">
+            <div class="footer__left">
+                <a href="../index.html" class="footer__logo">
+                    <img width="180" src="../img/deltaplay.png" alt="Дельтаплей">
+                </a>
+                <div>
+                    <nav class="footer__nav">
+                        <ul class="footer__list">
+                            <li class="footer__list-item">
+                                <a class="footer__list-link" href="../index.html">Главная</a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a class="footer__list-link" href="../games.html">Наши игры</a>
+                            </li>
+                            <li class="footer__list-item">
+                                <a class="footer__list-link" href="../contact-us.html">Контакты</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <ul class="footer__social footer__contacts-box">
+                        <li class="footer__social-item">
+                            <a class="footer__social-link" href="" target="_blank" rel="noopener">
+                                <img width="30" height="30" src="../img/icons-vk.svg" alt="vk">
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a class="footer__social-link" href="" target="_blank" rel="noopener">
+                                <img width="30" height="30" src="../img/icons-instagram.svg" alt="instagram">
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a class="footer__social-link" href="" target="_blank" rel="noopener">
+                                <img width="30" height="30" src="../img/icons-tg.svg" alt="telegram">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__right">
+                <div class="email-container">
+                    <form id="email-form" class="email-form">
+                        <p>Войти в почту</p>
+                        <input type="text" value="" placeholder="demo@deltaplay.ru"><br>
+                        <input type="password" placeholder="password"><br>
+                        <button onclick="checkEmail()" type="button">SIGN IN</button><br>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-    <button onclick="checkSelection()">Проверить</button>
+</footer>
+<!-- Popup modal -->
+<div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 id="modalMessage">Сообщение</h2>
+    </div>
 </div>
 
-<script>
-    let selectedCharacter = null;
-    let selectedDocuments = [];
+<!-- SCRIPTS -->
+<script src="../js/jquery.js"></script>
+<!--[if lt IE 10]> <script type="text/javascript" src="../js/ie8.js"></script> <![endif]-->
+<script src="../js/plugins.js"></script>
+<script src="../js/init.js"></script>
+<!-- /SCRIPTS -->
 
-    document.querySelectorAll('.option').forEach(option => {
-        option.addEventListener('click', function() {
-            document.querySelectorAll('.option').forEach(opt => opt.style.background = '#005599');
-            this.style.background = '#00aa00';
-            selectedCharacter = this;
-        });
-    });
-
-    document.querySelectorAll('.document').forEach(doc => {
-        doc.addEventListener('click', function() {
-            if (selectedDocuments.includes(this)) {
-                this.style.background = '#005599';
-                selectedDocuments = selectedDocuments.filter(d => d !== this);
-            } else if (selectedDocuments.length < 5) {
-                this.style.background = '#00aa00';
-                selectedDocuments.push(this);
-            }
-        });
-    });
-
-    function checkSelection() {
-        if (!selectedCharacter || selectedDocuments.length !== 5) {
-            alert('Выберите одного персонажа и четыре документа!');
-            return;
-        }
-
-        let characterCorrect = selectedCharacter.getAttribute('data-correct') === 'true';
-        let correctDocumentsCount = selectedDocuments.filter(doc => doc.getAttribute('data-correct') === 'true').length;
-
-        if (characterCorrect && correctDocumentsCount === 5) {
-            window.location.href = 'answer1.html';
-        } else {
-            alert(`Правильных ответов: ${characterCorrect ? 1 : 0} персонаж, ${correctDocumentsCount} документа(ов). Подумайте ещё!`);
-        }
-    }
-</script>
 </body>
 </html>
+
+

@@ -1916,7 +1916,15 @@ span a{
 /*---------------------------------------------------*/
 /*	07) IKNOW PORTFOLIO
 /*---------------------------------------------------*/
-
+.iknow_tm_game img {
+	width: 100%;
+}
+.iknow_tm_game .details {
+	margin: 40px 0 25px;
+}
+.iknow_tm_game .main_details {
+	margin-bottom: 25px;
+}
 .iknow_tm_portfolio{
 	width: 100%;
 	height: auto;
@@ -2279,40 +2287,40 @@ span a{
 	text-decoration: none;
 	color: #000;
 }
-.iknow_tm_modalbox .additional_images{
+.additional_images{
 	width: 100%;
 	height: auto;
 	clear: both;
 	float: left;
 }
-.iknow_tm_modalbox .additional_images ul{
+.additional_images ul{
 	margin: 0px 0px 0px -30px;
 	list-style-type: none;
 }
-.iknow_tm_modalbox .additional_images ul li{
+.additional_images ul li{
 	margin: 0px 0px 30px 0px;
 	float: left;
 	width: 50%;
 	padding-left: 30px;
 }
-.iknow_tm_modalbox .additional_images ul li:nth-child(3n-2){
+.additional_images ul li:nth-child(3n-2){
 	width: 100%;
 }
-.iknow_tm_modalbox .additional_images ul li .list_inner{
+.additional_images ul li .list_inner{
 	width: 100%;
 	height: auto;
 	clear: both;
 	float: left;
 	position: relative;
 }
-.iknow_tm_modalbox .additional_images ul li .my_image{
+.additional_images ul li .my_image{
 	position: relative;
 }
-.iknow_tm_modalbox .additional_images ul li .my_image img{
+.additional_images ul li .my_image img{
 	opacity: 0;
 	min-width: 100%;
 }
-.iknow_tm_modalbox .additional_images ul li .my_image .main{
+.additional_images ul li .my_image .main{
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
@@ -5187,8 +5195,8 @@ input[type=number] {
 	.iknow_tm_modalbox .box_inner{width: 500px;}
 	.iknow_tm_modalbox .main_details{flex-direction: column;}
 	.iknow_tm_modalbox .main_details .textbox{width: 100%;padding-right: 0px;margin-bottom: 40px;}
-	.iknow_tm_modalbox .additional_images ul{margin: 0px;}
-	.iknow_tm_modalbox .additional_images ul li{width: 100%;padding-left: 0px;}
+	.additional_images ul{margin: 0px;}
+	.additional_images ul li{width: 100%;padding-left: 0px;}
 	.iknow_tm_modalbox .description_wrap{padding: 30px;}
 	.iknow_tm_copyright.fixed{text-align: center;padding: 30px 20px;}
 	.iknow_tm_copyright.fixed .left{margin-bottom: 0px;}
