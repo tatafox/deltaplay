@@ -1,23 +1,21 @@
 jQuery(document).ready(function(){
 	"use strict";
 
-	iknow_tm_content_height();
-	iknow_tm_menu_width();
-	iknow_tm_cursor();
-	iknow_tm_imgtosvg();
-	iknow_tm_data_images();
-	iknow_tm_contact_form();
+	deltaplay_tm_menu_width();
+	deltaplay_tm_cursor();
+	deltaplay_tm_imgtosvg();
+	deltaplay_tm_data_images();
+	deltaplay_tm_contact_form();
 
-	iknow_tm_trigger_opener();
-	iknow_tm_trigger_menu();
+	deltaplay_tm_trigger_opener();
 	hashtag();
 
 	jQuery(window).load('body', function(){
-		iknow_tm_my_load();
+		deltaplay_tm_my_load();
 	});
 
 	jQuery(window).on('resize', function(){
-		iknow_tm_hero_height();
+		deltaplay_tm_hero_height();
 	});
 
 });
@@ -32,59 +30,29 @@ jQuery('.anchor_nav').onePageNav();
 // ---------------   HERO HEIGHT    --------------------
 // -----------------------------------------------------
 
-function iknow_tm_hero_height(){
+function deltaplay_tm_hero_height(){
 
 	"use strict";
 
-	var H 		= $('.iknow_tm_hero .main_menu').outerHeight();
+	var H 		= $('.deltaplay_tm_hero .main_menu').outerHeight();
 	var WW		= jQuery(window).width();
-	var topbarH = $('.iknow_tm_topbar').height();
+	var topbarH = $('.deltaplay_tm_topbar').height();
 	if(WW >= 1040){
-		$('.iknow_tm_hero .main_info').css({minHeight: 'calc(100vh - '+H+'px)',paddingTop:topbarH+'px'});
+		$('.deltaplay_tm_hero .main_info').css({minHeight: 'calc(100vh - '+H+'px)',paddingTop:topbarH+'px'});
 	}
 }
-
-// -------------------------------------------------
-// ------------    CONTENT HEIGHT    ---------------
-// -------------------------------------------------
-
-function iknow_tm_content_height(){
-
-	"use strict";
-
-	var ww				= jQuery(window).width();
-	var wh				= jQuery(window).height();
-	var topbarH			= jQuery('.iknow_tm_topbar').outerHeight();
-	var footerH			= jQuery('.iknow_tm_copyright.fixed').outerHeight();
-	var topPosition		= topbarH+62;
-	var topPosition2	= topbarH+35;
-	var topPosition3	= topbarH+25;
-	var total			= wh-topbarH-footerH-62;
-	var total2			= wh-topbarH-footerH-40;
-	var total3			= wh-topbarH-footerH;
-
-	if(ww > 1400){
-		jQuery('.iknow_tm_fixed_content .fixed_content_inner').css({height:total+'px',top:topPosition+'px'});
-	}
-	else if(ww >= 1040){
-		jQuery('.iknow_tm_fixed_content .fixed_content_inner').css({height:total3+'px',top:topPosition3+'px'});
-	}else{
-		jQuery('.iknow_tm_fixed_content .fixed_content_inner').css({height:total2+'px',top:topPosition2+'px'});
-	}
-}
-
 
 
 // -----------------------------------------------------
 // ---------------   MENU WIDTH   ----------------------
 // -----------------------------------------------------
 
-function iknow_tm_menu_width(){
+function deltaplay_tm_menu_width(){
 
 	"use strict";
 
 	var ww	= jQuery(window).width();
-	var btn	= jQuery('.iknow_tm_hero .main_menu ul li a');
+	var btn	= jQuery('.deltaplay_tm_hero .main_menu ul li a');
 
 	btn.on('mouseenter',function(){
 		var element 	= jQuery(this);
@@ -128,7 +96,7 @@ function iknow_tm_menu_width(){
 
 		if(ww <= 1040){
 			$('html, body').animate({
-				scrollTop: $('.iknow_tm_mainpart').offset().top - 30
+				scrollTop: $('.deltaplay_tm_mainpart').offset().top - 30
 			}, 1000);
 		}else{
 			$('html, body').animate({
@@ -141,10 +109,8 @@ function iknow_tm_menu_width(){
 		if(ww <= 1400){
 			li.siblings().removeClass('active').css({width:'95px'});
 		}
-		$('.iknow_tm_main_section.active').removeClass('active');
-		jQuery('.iknow_tm_mainpart').addClass('opened');
-		jQuery('.iknow_tm_hero .background_shape').addClass('opened');
-		jQuery('.iknow_tm_copyright.hidden').addClass('visible');
+		$('.deltaplay_tm_main_section.active').removeClass('active');
+		jQuery('.deltaplay_tm_hero .background_shape').addClass('opened');
 		$(href).addClass('active');
 
 		if(!li.hasClass('entered')){
@@ -152,12 +118,11 @@ function iknow_tm_menu_width(){
 			var textWidth	= li.find('span').outerWidth();
 			li.css({width: elWidth+textWidth+'px'});
 		}
-		iknow_tm_owl_carousel();
 
 		return false;
 	});
 
-	jQuery('.iknow_tm_hero .main_menu ul li.active').each(function(){
+	jQuery('.deltaplay_tm_hero .main_menu ul li.active').each(function(){
 		var element 	= jQuery(this);
 		var elWidth		= element.outerWidth();
 		var textWidth	= element.find('span').outerWidth();
@@ -167,54 +132,12 @@ function iknow_tm_menu_width(){
 	});
 }
 
-// -------------------------------------------------
-// -------------  PROGRESS BAR  --------------------
-// -------------------------------------------------
-
-function tdProgress(container){
-
-	"use strict";
-
-	container.find('.progress_inner').each(function() {
-		var progress 		= jQuery(this);
-		var pValue 			= parseInt(progress.data('value'), 10);
-		var pColor			= progress.data('color');
-		var pBarWrap 		= progress.find('.bar');
-		var pBar 			= progress.find('.bar_in');
-		var number 			= progress.find('.number');
-		var label 			= progress.find('.label');
-		number.css({right:(100 - pValue)+'%'});
-		setTimeout(function(){label.addClass('opened');},500);
-		pBar.css({width:pValue+'%', backgroundColor:pColor});
-		setTimeout(function(){pBarWrap.addClass('open');});
-	});
-}
-function progress_by_frenify(wrapper){
-
-	"use strict";
-
-	var element;
-	if(wrapper){
-		element = wrapper.find('.dodo_progress');
-	}else{
-		element = jQuery('.dodo_progress');
-	}
-	element.each(function() {
-		var pWrap = jQuery(this);
-		pWrap.find('.number').css({right:'100%'});
-		console.log(pWrap.find('.number').length);
-		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});
-	});
-}
-if(!$('.iknow_tm_extra_menu').length){
-	progress_by_frenify();
-}
 
 // -----------------------------------------------------
 // ---------------   PRELOADER   -----------------------
 // -----------------------------------------------------
 
-function iknow_tm_preloader(){
+function deltaplay_tm_preloader(){
 
 	"use strict";
 
@@ -238,12 +161,12 @@ function iknow_tm_preloader(){
 // -----------------   MY LOAD    ----------------------
 // -----------------------------------------------------
 
-function iknow_tm_my_load(){
+function deltaplay_tm_my_load(){
 
 	"use strict";
 
 	var speed	= 500;
-	setTimeout(function(){iknow_tm_preloader();},speed);
+	setTimeout(function(){deltaplay_tm_preloader();},speed);
 	setTimeout(function(){jQuery('body').addClass('opened');},speed+2000);
 }
 
@@ -251,7 +174,7 @@ function iknow_tm_my_load(){
 // ------------------   CURSOR    ----------------------
 // -----------------------------------------------------
 
-function iknow_tm_cursor(){
+function deltaplay_tm_cursor(){
 
     "use strict";
 
@@ -265,9 +188,9 @@ function iknow_tm_cursor(){
             o = !1;
         window.onmousemove = function (s) {
             o || (t.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)"), e.style.transform = "translate(" + s.clientX + "px, " + s.clientY + "px)", n = s.clientY, i = s.clientX
-        }, $("body").on("mouseenter", "a,.iknow_tm_topbar .trigger, .cursor-pointer", function () {
+        }, $("body").on("mouseenter", "a,.deltaplay_tm_topbar .trigger, .cursor-pointer", function () {
             e.classList.add("cursor-hover"), t.classList.add("cursor-hover")
-        }), $("body").on("mouseleave", "a,.iknow_tm_topbar .trigger, .cursor-pointer", function () {
+        }), $("body").on("mouseleave", "a,.deltaplay_tm_topbar .trigger, .cursor-pointer", function () {
             $(this).is("a") && $(this).closest(".cursor-pointer").length || (e.classList.remove("cursor-hover"), t.classList.remove("cursor-hover"))
         }), e.style.visibility = "visible", t.style.visibility = "visible"
     }
@@ -278,7 +201,7 @@ function iknow_tm_cursor(){
 // ---------------    IMAGE TO SVG    ------------------
 // -----------------------------------------------------
 
-function iknow_tm_imgtosvg(){
+function deltaplay_tm_imgtosvg(){
 
 	"use strict";
 
@@ -312,7 +235,7 @@ function iknow_tm_imgtosvg(){
 // ---------------   DATA IMAGES    --------------------
 // -----------------------------------------------------
 
-function iknow_tm_data_images(){
+function deltaplay_tm_data_images(){
 
 	"use strict";
 
@@ -329,7 +252,7 @@ function iknow_tm_data_images(){
 // ----------------    CONTACT FORM    -----------------
 // -----------------------------------------------------
 
-function iknow_tm_contact_form(){
+function deltaplay_tm_contact_form(){
 
 	"use strict";
 
@@ -377,62 +300,19 @@ function iknow_tm_contact_form(){
 
  new WOW().init();
 
-// -----------------------------------------------------
-// ----------------    OWL CAROUSEL    -----------------
-// -----------------------------------------------------
-
-function iknow_tm_owl_carousel(){
-
-	"use strict";
-
-	var carousel			= jQuery('.iknow_tm_testimonials .owl-carousel');
-	var carousel2			= jQuery('.iknow_tm_fixed_content .iknow_tm_testimonials .owl-carousel');
-
-	var rtlMode		= false;
-
-	if(jQuery('body').hasClass('rtl')){
-		rtlMode = 'true';
-	}
-
-	carousel2.owlCarousel({
-		items: 1,
-	});
-
-	carousel.owlCarousel({
-		loop: true,
-		items: 2,
-		lazyLoad: false,
-		margin: 25,
-		autoplay: true,
-		autoplayTimeout: 7000,
-		rtl: rtlMode,
-		dots: true,
-		nav: false,
-		navSpeed: false,
-		responsive : {
-				0 : {
-					items: 1
-				},
-				768 : {
-					items: 2
-				}
-			}
-	});
-	iknow_tm_imgtosvg();
-}
 
 // -----------------------------------------------------
 // ---------------   TRIGGER MENU    -------------------
 // -----------------------------------------------------
 
-function iknow_tm_trigger_opener(){
+function deltaplay_tm_trigger_opener(){
 
 	"use strict";
 
 	var audio1			= jQuery('#audio1');
 	var audio2			= jQuery('#audio2');
-	var hamburger 		= jQuery('.iknow_tm_extra_demo .iknow_tm_topbar .trigger .hamburger');
-	var menu			= jQuery('.iknow_tm_topbar .wrapper .menu');
+	var hamburger 		= jQuery('.deltaplay_tm_extra_demo .deltaplay_tm_topbar .trigger .hamburger');
+	var menu			= jQuery('.deltaplay_tm_topbar .wrapper .menu');
 
 	hamburger.on('click',function(){
 		var element 	= jQuery(this);
@@ -450,36 +330,10 @@ function iknow_tm_trigger_opener(){
 }
 
 // -----------------------------------------------------
-// ---------------   TRIGGER MENU    -------------------
-// -----------------------------------------------------
-
-function iknow_tm_trigger_menu(){
-
-	"use strict";
-
-	var hamburger 		= jQuery('.iknow_tm_mobile_menu .trigger .hamburger');
-	var mobileMenu		= jQuery('.iknow_tm_mobile_menu .dropdown');
-	var mobileMenuList	= jQuery('.iknow_tm_mobile_menu .dropdown .dropdown_inner ul li a');
-
-	hamburger.on('click',function(){
-		var element 	= jQuery(this);
-
-		if(element.hasClass('is-active')){
-			element.removeClass('is-active');
-			mobileMenu.slideUp();
-		}else{
-			element.addClass('is-active');
-			mobileMenu.slideDown();
-		}
-		return false;
-	});
-}
-
-// -----------------------------------------------------
 // ---------------   MENU WIDTH NEW   ------------------
 // -----------------------------------------------------
 
-function iknow_tm_menu_width_action(element,action){
+function deltaplay_tm_menu_width_action(element,action){
 	"use strict";
 	var ww	= jQuery(window).width();
 
@@ -519,14 +373,14 @@ function iknow_tm_menu_width_action(element,action){
 
 function hashtag(){
 	"use strict";
-	var ccc 			= $('.iknow_tm_topbar .wrapper .menu .ccc');
-	var element 		= $('.iknow_tm_topbar .wrapper .menu .active a');
-	$('.iknow_tm_topbar .wrapper .menu a').on('mouseenter',function(){
+	var ccc 			= $('.deltaplay_tm_topbar .wrapper .menu .ccc');
+	var element 		= $('.deltaplay_tm_topbar .wrapper .menu .active a');
+	$('.deltaplay_tm_topbar .wrapper .menu a').on('mouseenter',function(){
 		var e 			= $(this);
 		currentLink(ccc,e);
 	});
-	$('.iknow_tm_topbar .wrapper .menu').on('mouseleave',function(){
-		element 		= $('.iknow_tm_topbar .wrapper .menu .active a');
+	$('.deltaplay_tm_topbar .wrapper .menu').on('mouseleave',function(){
+		element 		= $('.deltaplay_tm_topbar .wrapper .menu .active a');
 		currentLink(ccc,element);
 		element.parent().siblings().removeClass('mleave');
 	});
@@ -539,39 +393,10 @@ function currentLink(ccc,e){
 	if(!e.length){return false;}
 	var left 		= e.offset().left;
 	var width		= e.outerWidth();
-	var menuleft 	= $('.iknow_tm_topbar .wrapper .menu').offset().left;
+	var menuleft 	= $('.deltaplay_tm_topbar .wrapper .menu').offset().left;
 	e.parent().removeClass('mleave');
 	e.parent().siblings().addClass('mleave');
 	ccc.css({left: (left-menuleft) + 'px',width: width + 'px'});
-
-}
-
-function hashtag2(){
-	"use strict";
-	var ccc 			= $('.iknow_tm_sidebar_2 .ccc');
-	var element 		= $('.iknow_tm_sidebar_2 .active a');
-	$('.iknow_tm_sidebar_2 .menu a').on('mouseenter',function(){
-		var e 			= $(this);
-		currentLink2(ccc,e);
-	});
-	$('.iknow_tm_sidebar_2 .menu').on('mouseleave',function(){
-		element 		= $('.iknow_tm_sidebar_2 .menu .active a');
-		currentLink2(ccc,element);
-		element.parent().siblings().removeClass('mleave');
-	});
-	currentLink2(ccc,element);
-
-}
-
-function currentLink2(ccc,e){
-	"use strict";
-	if(!e.length){return false;}
-	var left 		= e.offset().top;
-	var width		= e.outerWidth();
-	var menuleft 	= $('.iknow_tm_sidebar_2 .menu').offset().top;
-	e.parent().removeClass('mleave');
-	e.parent().siblings().addClass('mleave');
-	ccc.css({top: (left-menuleft) + 'px'});
 
 }
 
