@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /mail.html
+Disallow: /case29/answer.html
+Disallow: /case29/answer1.html
+Disallow: /case29/answer2.html
+Disallow: /case29/final.html

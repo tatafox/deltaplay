@@ -89,6 +89,15 @@ h1, h2, h3, h4, h5, h6{
 	color: #222;
 }
 
+h1.title{
+	font-size: 20px;
+	font-size: 20px;
+	font-weight:600;
+	line-height: 1.2;
+	font-family: "Mulish", sans-serif;
+	color: #2886c8;
+}
+
 h1 { font-size: 45px; }
 h2 { font-size: 36px; }
 h3 { font-size: 30px; }
@@ -505,6 +514,7 @@ span a{
 }
 .deltaplay_tm_hero .subtitle{
 	display: inline-block;
+	font-family: "Mulish", sans-serif;
 	color: #F16471;
 	font-size: 30px;
 	font-weight: 700;
