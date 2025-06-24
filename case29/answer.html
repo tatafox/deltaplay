@@ -10,7 +10,60 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+<div class="overlay" id="popup">
+    <div class="popup">
+        <h2>Внимание!</h2>
+        <p>
+            Дорогие наши покупатели, так как игру собирали не роботы, а живые люди (ещё и с маленьким ребёнком на руках), случилось так, что в два экземпляра игры закралась ошибка. Один из файлов переписки был распечатан неверно.
+        </p>
+        <p>
+            Вы можете скачать <a href="messages.jpg" target="_blank">правильный файл</a><br>
+            Если это была ваша игра, напишите нам любым из доступных способов
+
+        </p>
+        <ul>
+            <li>
+                <a class="social-link" href="https://vk.ru/deltaplay_vk" target="_blank" rel="noopener">
+                    vk
+                </a>
+            </li>
+            <li>
+                <a class="social-link" href="https://www.instagram.com/deltaplay.by/" target="_blank" rel="noopener">
+                    instagram
+                </a>
+            </li>
+            <li>
+                <a href="https://t.me/Deltaplay_byBot" target="_blank" rel="noopener">
+                    telegram
+                </a>
+            </li>
+        </ul>
+        <p>
+            и скиньте фото ошибочной страницы.
+        </p>
+        <p>
+            В качестве извинений, мы вышлем вам нашу новую игру, как только она выйдет в продажу, совершенно бесплатно.
+        </p>
+        <button onclick="closePopup()">Ок</button>
+    </div>
+</div>
 <div class="container">
+    <h2>Внимание!</h2>
+    <p>
+        Дорогие наши покупатели, случилось так, что в два экземпляра игры закралась ошибка.
+    </p>
+    <p>
+        Один из файлов переписки был распечатан неверно.
+    </p>
+    <p>
+        Вы можете скачать <a href="messages.jpg" target="_blank">правильный файл</a><br>
+        Если это была ваша игра, напишите нам любым из доступных способов и скиньте фото ошибочной страницы.
+    </p>
+    <p>
+        В качестве извинений, мы вышлем вам нашу новую игру, как только она выйдет в продажу, совершенно бесплатно.
+    </p>
+
+    </p>
     <h3>Вы можете ответить на вопрос, или воспользоваться подсказкой, если вы зашли в тупик</h3>
     <div class="hints">
         <button onclick="showHint(1)">Подсказка 1</button>
@@ -138,6 +191,10 @@
             5: "Кто мог оставить след под окном? Советуем присмотреться к фото с вечеринки"
         };
         showModal(hints[number]);
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
     }
 </script>
 </body>
