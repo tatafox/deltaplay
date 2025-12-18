@@ -442,4 +442,18 @@ function checkEmail(){
 	}
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+	debugger
+	const popup = document.getElementById('geoPopup');
+	const closeBtn = document.getElementById('geoPopupClose');
 
+	// показываем попап при загрузке
+	setTimeout(() => {
+		popup.classList.add('active');
+	}, 500);
+
+	// закрытие
+	closeBtn.addEventListener('click', () => {
+		popup.classList.remove('active');
+	});
+});

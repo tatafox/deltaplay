@@ -34,6 +34,44 @@
 </div>
 <!-- /PRELOADER -->
 
+<!-- GEO / QR POPUP -->
+<div class="geo-popup" id="geoPopup">
+	<div class="geo-popup__overlay"></div>
+	<div class="geo-popup__content">
+		<button class="geo-popup__close" id="geoPopupClose">×</button>
+
+		<h2>Важно</h2>
+
+		<p>
+			К сожалению, в связи с некоторыми ограничениями и техническими работами в нашей стране,
+			наш сайт может быть недоступен из других стран.
+		</p>
+
+		<p>
+			Если ваш QR-код не сработал и привёл вас сюда — ниже вы найдёте все необходимые материалы.
+		</p>
+
+		<ul class="geo-popup__links">
+			<li>
+				<strong>▶ При открытии игры</strong><br>
+				<a href="case29/answer.html" target="_blank">Перейти к материалам</a>
+			</li>
+			<li>
+				<strong>📂 Материалы из первого конверта</strong><br>
+				<a href="case29/answer1.html" target="_blank">Открыть документы</a>
+			</li>
+			<li>
+				<strong>📂 Материалы из второго конверта</strong><br>
+				<a href="case29/answer2.html" target="_blank">Открыть документы</a>
+			</li>
+			<li>
+				<strong>🕵 Ответ на дело</strong><br>
+				<a href="case29/final.html" target="_blank">Посмотреть решение</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
 <div class="deltaplay_tm_all_wrap" data-magic-cursor="show" data-enter="zoomInDown" data-exit="slideInLeft">
 
 
@@ -143,9 +181,18 @@
 	<div class="footer-container">
 		<div class="container">
 			<div class="footer__left">
-				<a href="index.html" class="footer__logo">
-					<img width="180" src="img/deltaplay.png" alt="Дельтаплей">
-				</a>
+				<div>
+					<a href="index.html" class="footer__logo">
+						<img width="180" src="img/deltaplay.png" alt="Дельтаплей">
+					</a>
+					<div class="footer__info">
+						OOO "Дельтаплей"<br>
+						УНП 693348151<br>
+						ул. Михаила Морозова<br> дом 39, корп. 3, пом. 1-Б/32<br>
+						г. Борисов, Минская область
+
+					</div>
+				</div>
 				<div>
 					<nav class="footer__nav">
 						<ul class="footer__list">
@@ -212,6 +259,7 @@
 <script src="js/plugins.js"></script>
 <script src="js/init.js"></script>
 <!-- /SCRIPTS -->
+
 
 </body>
 </html>

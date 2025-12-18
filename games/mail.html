@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Client</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            flex-direction: row;
+        }
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .sidebar button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .email {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .email:hover {
+            background: #f4f4f4;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 10px;
+            width: 80%;
+        }
+        .popup button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        #popup-sender {
+            color: #1b1b1b;
+            font-size: 14px;
+        }
+        #popup-theme {
+            color: #989898;
+            font-size: 14px;
+        }
+        .popup button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        .attachments {
+            margin-top: 15px;
+        }
+        .attachments img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .attachments video {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .attachments a.file-link {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .attachments a.file-link:hover {
+            background-color: #d0d7de;
+        }
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+            .sidebar button {
+                width: auto;
+                margin: 5px;
+                flex: 1;
+            }
+            .content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h2 style="margin: 0 0 50px 0;text-align:center;">Анна<br>Грейс</h2>
+    <button onclick="loadInbox()">Входящие</button>
+    <button onclick="loadSent()">Отправленные</button>
+</div>
+<div class="content" id="content">
+    <h2></h2>
+    <div id="emails"></div>
+</div>
+<div class="popup-overlay" id="popup-overlay" onclick="overlayClick(event)">
+    <div class="popup" id="popup" onclick="event.stopPropagation()">
+        <h2 id="popup-subject"></h2>
+        <p><span id="popup-sender"></span></p>
+        <p><span id="popup-theme"></span></p>
+        <p id="popup-body"></p>
+        <div class="attachments" id="popup-attachments"></div>
+        <button onclick="closePopup()" style="margin-top: 30px">Close</button>
+    </div>
+</div>
+<script>
+    function loadInbox() {
+        const emails = [
+            {
+                subject: "Эксклюзивное предложение",
+                sender: "Asha Kemmer ashakemmer@ymails.com",
+                theme: "Feb 8, 2020, 11:22AM",
+                body: `Уважаемая Анна Грейс,<br><br>
+Меня зовут Аша Кеммер, я главный редактор издательства "Shadow & Clue Press", и я пишу Вам, будучи искренним поклонником Вашего творчества.
+<br><br>
+Мы в "Shadow & Clue Press" искренне верим, что можем предложить Вам нечто уникальное, что позволит Вашим книгам достичь ещё больших высот. Наше издательство специализируется на детективной литературе, и мы понимаем, как важно для автора не только издавать книги, но и находить партнёра, который разделяет его видение и ценит каждую деталь его работы. Мы слышали о том, что сейчас вы пишите новый шедевр и готовы предложить вам сменить издательство и предложить публиковаться у нас на весьма выгодных для вас условиях.
+<br><br>
+Позвольте мне рассказать, что мы можем предложить:
+<br><br>
+Индивидуальный подход к каждому изданию: от выбора обложки до маркетинговой кампании — мы готовы работать над тем, чтобы каждая книга стала событием в мире литературы.
+<br><br>
+Расширение аудитории: благодаря нашей широкой сети дистрибьюторов и партнёрскому сотрудничеству с крупнейшими онлайн- и офлайн-магазинами, Ваши книги смогут достичь новых читателей.
+<br><br>
+Гибкость и свобода творчества: мы готовы поддержать Вас в создании любых идей, даже самых смелых, ведь именно уникальность делает Ваши книги такими популярными.
+<br><br>
+Привлекательные финансовые условия: мы предлагаем лучшие роялти на рынке и готовы обсудить аванс, отражающий Ваш статус как одного из самых востребованных авторов.
+<br><br>
+Мы уверены, что наше сотрудничество станет не только выгодным, но и вдохновляющим для обеих сторон. Если Вы готовы рассмотреть наше предложение, я буду рада обсудить все детали в удобное для Вас время.
+<br><br>
+Также мы предлагаем вам сменить литературного агента, на того, который будет работать с нами и вами на взаимовыгодных условиях.
+<br><br>
+С нетерпением жду Вашего ответа и надеюсь на встречу с Вами, чтобы обсудить наше сотрудничество более подробно.
+<br>
+<br>
+<br>
+С уважением, Аша Кеммер
+<br>
+Главный редактор Shadow & Clue Press
+<br>
+Телефон: +1 (555) 123-4567`,
+                attachments: []
+            },
+            {
+                subject: "Барбекю",
+                sender: "Клементина Моэн kmoem@ymail.me",
+                theme: "Feb 8, 2020, 12:28PM",
+                body: `Анна, привет! Это Клемми.
+<br><br>
+Мы тут завтра, в воскресенье, организовываем барбекю, будем рады видеть тебя. Я заходила, но тебя не было дома, оставила приглашение в ящике. Но, зная сколько у тебя почты решила продублировать приглашение сюда. Так что ждём тебя завтра в 14.00
+<br><br><br><br>
+С уважением, Клементина Моэн`,
+                attachments: []
+            },
+            {
+                subject: "Напоминаю!",
+                sender: "Дэвид Харрис devidharris@mail.com",
+                theme: " Feb 10, 6:11PM",
+                body: `Анна, черт побери, до тебя опять не дозвониться!
+<br><br>
+Я надеюсь ты не забыла, что у тебя завтра автограф сессия.
+<br><br>
+И еще меня достает издатель, я конечно отбиваюсь как могу. Но мне нужны хоть какие-то сроки по книге.
+<br><br>
+В общем позвони мне!!!
+<br><br><br><br>
+С уважением, Дэвид Харрис
+<br>
+Телефон: +1 (555) 135-5799`,
+                attachments: []
+            },
+            {
+                subject: "Ты была права",
+                sender: "Оливер Кросс okross@ymail.me",
+                theme: "Feb 12, 10:25AM",
+                body: `Дорогая Анна,
+<br><br>
+Я помню что ты интересовалась "Silvercrest Investments", и наконец смог добыть информацию.
+<br><br>
+Я недавно встречался с одним знакомым, который там работал в то время, которым ты интересовалась. И он рассказал, что в компании было много "красивых цифр". Я не могу утверждать, но похоже, что эти "цифры" были на самом деле просто выгодными условиями для "особых клиентов". Бывают такие инвестиции, которые звучат слишком хорошо, чтобы быть правдой, правда? Особенно, когда начинаешь искать "неофициальные" документы и цепочки сделок. Я не удивлюсь, если однажды выйдет так, что все эти красивые отчёты окажутся просто великолепно выстроенной иллюзией.
+<br><br>
+Могу подсказать, где искать материалы, и помочь с их поиском. Сама понимаешь, что это будет стоить денег. Но если хочешь развернуть тему для своей новой книги, то тебе стоит обзавестись доказательствами. У меня есть пара источников информации, которые смогут помочь. Они как раз работали там до 2020 года, и у них сохранились кое-какие документы, которые они берегли для своей подстраховки.
+<br><br>
+Но мне кажется что эта информация, будучи обнародаванной не обрадует некоторых твоих знакомых. Сомневаюсь, что тот о ком я говорю, был не в курсе этих махинаций. И что-то мне подсказывает, что он и сам имел от этого выгоду. В любом случае решать тебе.
+<br><br>
+Жду твоих мыслей по поводу этого. Лучше при личной встрече.
+<br><br>
+С наилучшими пожеланиями,<br>
+Оливер`,
+                attachments: []
+            },
+            {
+                subject: "Условия сотрудничества",
+                sender: "Эмили Картер emilykarter@ymail.me>",
+                theme: "Feb 18, 2025, 4:54PM",
+                body: `Анна, доброго дня!
+<br><br>
+Мне ваш контакт дала Аша Кеммер. Я литературный агент, она вам про меня рассказывала. Свяжитесь со мной по телефону, когда вам будет удобно +1 (23) 254-68-78
+<br><br>
+С уважением, Эмили Картерн`,
+                attachments: []
+            },
+            {
+                subject: "Завещание",
+                sender: "Роберт Миллер millerr@ymail.me>",
+                theme: "Feb 20, 3:06PM",
+                body: `Уважаемая мисс Грейс,
+<br><br>
+В соответствии с Вашим запросом, я подготовил новый вариант Вашего
+завещания. Согласно документу, все Ваши активы, включая недвижимость,
+банковские счета и авторские права, после Вашей кончины будут переданы
+Литературному фонду "Наследие".
+<br><br>
+Прошу Вас ознакомиться с текстом завещания (документ во вложении).
+Если Вас все устраивает, необходимо подписать его в моем присутствии
+для заверения.
+<br><br>
+К сожалению, на этой неделе у меня полностью расписан график, поэтому
+предлагаю назначить встречу на следующей неделе в удобное для Вас
+время. Пожалуйста, сообщите мне дату и время, когда Вам будет удобно
+посетить мой офис.
+<br><br>
+Если у Вас есть вопросы или пожелания по изменению документа, прошу
+связаться со мной заранее.
+<br><br>
+С уважением,<br>
+Роберт Миллер<br>
+Нотариус<br>
+Офис: ул. Виктория-стрит, 12, Блэквуд<br>
+Тел.: +1 (555) 789-4562<br>
+`,
+                attachments: ['<a href="docs/ЗАВЕЩАНИЕ.docx" target="_blank" class="file-link">📄 Завещание.docx</a>']
+            },
+            {
+                subject: "Анна, ты серьезно?",
+                sender: "Дэвид Харрис devidharris@mail.com",
+                theme: "Feb 21, 6:06PM",
+                body: `Анна,
+<br><br>
+Ты вообще понимаешь, что ты творишь? Сегодня у нас была встреча с издателем, важнейшая встреча, где должны были обсудить детали контракта на твою новую книгу. И где ты была? Ни звонка, ни предупреждения, ни даже жалкой смс! Я сижу там один, мямлю какие-то оправдания, пока люди, которые готовы вложить в тебя деньги, смотрят на меня как на идиота.
+<br><br>
+Я уже молчу про то, что ты не берешь трубку и не отвечаешь на сообщения. Это детское поведение, Анна! Если у нас есть разногласия — мы их обсуждаем, а не играем в молчанку. У тебя был шанс подписать отличный контракт, но если ты продолжишь так себя вести, мы его просто потеряем.
+<br><br>
+Твой талант — это одно, но в этом бизнесе важны еще и обязательства. Мне, черт возьми, надо объяснять это тебе, профессиональному писателю?
+<br><br>
+Жду объяснений. Срочно.
+
+Дэвид`,
+                attachments: []
+            },
+            {
+                subject: "Фото",
+                sender: "Марк Уилсон markwilson@mail.com",
+                theme: "Feb 22, 10:10PM",
+                body: `Анна, ты не берешь трубку, а я тут еду в такси и пересматриваю фото с
+вечеринки. По-моему было классно. Хотя на мой взгляд, мы с тобой
+смотримся куда лучше, чем ты с Виктором. Подумай об этом )<br><br>
+И вообще, я уже хочу вернуться назад к тебе, может ты все же не против
+поболтать еще?<br><br>
+Уже скучаю.<br>
+Твой Марк.`,
+                attachments: [
+                    '<img src="img/party/1.png" alt="Image 1">',
+                    '<img src="img/party/2.png" alt="Image 2">',
+                    '<img src="img/party/3.png" alt="Image 3">',
+                    '<img src="img/party/4.png" alt="Image 4">',
+                    '<img src="img/party/5.png" alt="Image 5">',
+                    '<img src="img/party/6.png" alt="Image 6">',
+                    '<img src="img/party/7.png" alt="Image 7">',
+                    '<img src="img/party/8.png" alt="Image 8">',
+                    '<img src="img/party/9.png" alt="Image 9">',
+                        '<img src="img/party/10.png" alt="Image 10">',
+                    '<video controls><source src="img/party/11.mp4" type="video/mp4">Your browser does not support the video tag.</video>'
+                ]
+            }
+        ];
+        loadEmails(emails, "Входящие");
+    }
+
+    function loadSent() {
+        const emails = [
+            {
+                subject: "Срочно!",
+                sender: "okross@ymail.me",
+                theme: "Feb 8, 2020, 11:43PM",
+                body: `Оливер, это бомба!
+<br><br>
+Нужна информация, "Silvercrest Investments", 2014 год`,
+                attachments: []
+            }
+        ];
+        loadEmails(emails, "Отправленные");
+    }
+
+    function loadEmails(emails, title) {
+        document.getElementById("content").innerHTML = `<h2>${title}</h2><div id="emails"></div>`;
+        const emailsContainer = document.getElementById("emails");
+        emailsContainer.innerHTML = "";
+
+        emails.forEach((email) => {
+            const emailElement = document.createElement("div");
+            emailElement.classList.add("email");
+            emailElement.innerHTML = `<strong>${email.subject}</strong><br><small>${email.sender}</small>`;
+            emailElement.onclick = () => openPopup(email);
+            emailsContainer.appendChild(emailElement);
+        });
+    }
+
+    function openPopup(email) {
+        document.getElementById("popup-subject").textContent = email.subject;
+        document.getElementById("popup-sender").textContent = email.sender;
+        document.getElementById("popup-theme").textContent = email.theme;
+        document.getElementById("popup-body").innerHTML = email.body;
+
+        const attachmentContainer = document.getElementById("popup-attachments");
+        attachmentContainer.innerHTML = "";
+        if (email.attachments && email.attachments.length > 0) {
+            const label = document.createElement("p");
+            label.innerHTML = '<strong>Attachments:</strong>';
+            attachmentContainer.appendChild(label);
+            email.attachments.forEach(item => {
+                const wrapper = document.createElement("div");
+                wrapper.innerHTML = item;
+                attachmentContainer.appendChild(wrapper);
+            });
+        }
+
+        document.getElementById("popup-overlay").style.display = "flex";
+    }
+
+    function closePopup() {
+        document.getElementById("popup-overlay").style.display = "none";
+    }
+
+    function overlayClick(event) {
+        if (event.target === document.getElementById("popup-overlay")) {
+            closePopup();
+        }
+    }
+</script>
+</body>
+</html>
